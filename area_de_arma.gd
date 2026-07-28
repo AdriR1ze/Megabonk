@@ -26,17 +26,14 @@ func actualizar_stats():
 
 
 func _on_body_entered(body: Node3D) -> void:
-	print("BODY ENTERED: ", body.name, " grupos: ", body.get_groups())
 	if body.is_in_group("enemy"):
-		print(">>> Es enemigo, agregando a la lista")
 		enemies_in_range.append(body)
 		if enemies_in_range.size() == 1:
-			print(">>> Primer enemigo, disparando y arrancando timer")
 			disparar()
 			$Timer.start()
 
 func _on_timer_timeout() -> void:
-	print(">>> TIMER TIMEOUT")
+
 	disparar()
 
 func disparar():

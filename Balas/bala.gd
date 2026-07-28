@@ -26,5 +26,6 @@ func explotar():
 	for body in $HitBoxBala.get_overlapping_bodies():
 		if body.is_in_group("enemy"):
 			body.take_damage(damage * PlayerStats.atack)
+			print("Daño: ", damage * PlayerStats.atack)
 
 	queue_free()
