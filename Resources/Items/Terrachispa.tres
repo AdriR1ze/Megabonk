@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://darxmgc57dsug"]
+
+[ext_resource type="Script" uid="uid://dgj8vsixewv00" path="res://item.gd" id="1_3wca6"]
+
+[resource]
+script = ExtResource("1_3wca6")
+id = 1
+display_name = "Terrachispa"
+description = "Con esto no hay nadie mas rapido que vos"
+move_speed = 0.5
+atq_speed = 5.0
+metadata/_custom_type_script = "uid://dgj8vsixewv00"

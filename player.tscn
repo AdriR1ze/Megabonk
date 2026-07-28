@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://cf28t3clpsbee"]
+
+[ext_resource type="Script" uid="uid://calmkdd0xjr0n" path="res://player.gd" id="1_4flbx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lgngo"]
+albedo_color = Color(0.44302565, 0.50795174, 0.38014427, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_u177a"]
+material = SubResource("StandardMaterial3D_lgngo")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u177a"]
+
+[node name="Player" type="CharacterBody3D" unique_id=218347238]
+script = ExtResource("1_4flbx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1097698566]
+mesh = SubResource("CapsuleMesh_u177a")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=425645651]
+shape = SubResource("CapsuleShape3D_u177a")
+
+[node name="pivot" type="Node3D" parent="." unique_id=1660800282]
+
+[node name="Camera3D" type="Camera3D" parent="pivot" unique_id=2032213160]
+transform = Transform3D(1, 0, 0, 0, 0.7458309, 0.6661353, 0, -0.6661353, 0.7458309, 0, 4.895091, 3.9843407)
+far = 500.0
+
+[node name="SpawnPoint" type="Marker3D" parent="." unique_id=330301758]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21582174, 0)

@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cumvllbldvrhr"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_u177a"]
+radius = 0.51
+
+[node name="HitBoxBala" type="Area3D" unique_id=948943549]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=14670263]
+shape = SubResource("SphereShape3D_u177a")

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://wj2kk2vs43dp"]
+
+[ext_resource type="Script" uid="uid://bvufqb6f7hqio" path="res://WeaponData.gd" id="1_efrwb"]
+[ext_resource type="PackedScene" uid="uid://xn3ftmmwvkni" path="res://area_de_arma.tscn" id="1_oi0tk"]
+
+[resource]
+script = ExtResource("1_efrwb")
+weapon_name = "PistolaComun"
+scene = ExtResource("1_oi0tk")
+rango = 500.0
+metadata/_custom_type_script = "uid://bvufqb6f7hqio"

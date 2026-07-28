@@ -1,0 +1,48 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="megabonk"
+run/main_scene="uid://4kygrfrsnig3"
+config/features=PackedStringArray("4.7", "Forward Plus")
+config/icon="res://icon.svg"
+
+[autoload]
+
+ItemDB="*uid://yv3pvsmfrj7"
+ItemManager="*uid://b8wjjgj64wk7t"
+GameManager="*uid://bgrvv7t6d2vrw"
+PlayerStats="*uid://bh3spdwmf7k1k"
+WeaponManager="*uid://cb5gxrl4euti4"
+
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
+[global_group]
+
+enemy=""
+
+[input]
+
+shoot={
+"deadzone": 0.2,
+"events": []
+}
+
+[physics]
+
+3d/physics_engine="Jolt Physics"
+
+[rendering]
+
+rendering_device/driver.windows="d3d12"

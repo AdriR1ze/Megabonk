@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://go4rbxtqjvmd"]
+
+[ext_resource type="Script" uid="uid://dgj8vsixewv00" path="res://item.gd" id="1_5343l"]
+
+[resource]
+script = ExtResource("1_5343l")
+id = 2
+display_name = "Daga"
+description = "Daga full daño"
+atack = 5.0
+metadata/_custom_type_script = "uid://dgj8vsixewv00"

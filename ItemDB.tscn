@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://yv3pvsmfrj7"]
+
+[ext_resource type="Script" uid="uid://dhfdoj1vbo1on" path="res://ItemDb.gd" id="1_mc4ce"]
+[ext_resource type="Script" uid="uid://dgj8vsixewv00" path="res://item.gd" id="2_amm6y"]
+[ext_resource type="Resource" uid="uid://bjcr13qkm54py" path="res://Resources/Items/Zapatillas.tres" id="3_ockvv"]
+[ext_resource type="Resource" uid="uid://darxmgc57dsug" path="res://Resources/Items/Terrachispa.tres" id="4_rp6hv"]
+[ext_resource type="Resource" uid="uid://go4rbxtqjvmd" path="res://Resources/Items/daga.tres" id="5_oipqh"]
+[ext_resource type="Resource" uid="uid://cfaqd3eou7pe2" path="res://Resources/Items/Bateria.tres" id="6_oipqh"]
+
+[node name="ItemDb" type="Node" unique_id=438672044]
+script = ExtResource("1_mc4ce")
+lista_items = Array[ExtResource("2_amm6y")]([ExtResource("5_oipqh"), ExtResource("4_rp6hv"), ExtResource("3_ockvv"), ExtResource("6_oipqh")])

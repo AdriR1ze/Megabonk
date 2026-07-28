@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bhuiggvoli0bh"]
+
+[ext_resource type="Script" uid="uid://bt2mqvqieadbk" path="res://ItemFisico.gd" id="1_tnite"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_tdeca"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u177a"]
+
+[node name="StaticBody3D" type="Area3D" unique_id=1444834833]
+script = ExtResource("1_tnite")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1577253405]
+mesh = SubResource("BoxMesh_tdeca")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=929931203]
+shape = SubResource("BoxShape3D_u177a")

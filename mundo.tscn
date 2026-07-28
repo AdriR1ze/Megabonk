@@ -1,0 +1,142 @@
+[gd_scene format=3 uid="uid://4kygrfrsnig3"]
+
+[ext_resource type="PackedScene" uid="uid://cf28t3clpsbee" path="res://player.tscn" id="1_lgngo"]
+[ext_resource type="Shader" uid="uid://ddbes2mdlyvwi" path="res://pasto.gdshader" id="2_aou4a"]
+[ext_resource type="PackedScene" uid="uid://bhu7dmau1esuu" path="res://enemigo.tscn" id="2_fw4w5"]
+[ext_resource type="Texture2D" uid="uid://bfp2c6ombpolk" path="res://hierba-textura-fluida-patron-cesped-natural_172107-1308.png" id="3_5ckkb"]
+[ext_resource type="Script" uid="uid://nq4pmn1vw4vg" path="res://label.gd" id="3_fw4w5"]
+[ext_resource type="PackedScene" uid="uid://bhuiggvoli0bh" path="res://item.tscn" id="4_otwa2"]
+[ext_resource type="PackedScene" uid="uid://bmlrr2ib6dwf5" path="res://spawner.tscn" id="7_2hh7m"]
+[ext_resource type="PackedScene" uid="uid://bsvowmsukqcnn" path="res://item_spawner.tscn" id="7_t8jxu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6ba58"]
+size = Vector3(2336.5806, 0.001, 1881.3525)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_2hh7m"]
+noise_type = 3
+frequency = 0.05
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5ckkb"]
+noise = SubResource("FastNoiseLite_2hh7m")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5ckkb"]
+render_priority = 0
+shader = ExtResource("2_aou4a")
+shader_parameter/background_floor_color = Color(0.15, 0.12, 0.08, 1)
+shader_parameter/base_color = Color(0.2, 0.6627451, 0.14901961, 1)
+shader_parameter/grass_texture = ExtResource("3_5ckkb")
+shader_parameter/grass_scale = Vector2(2, 2)
+shader_parameter/black_clip_threshold = 0.05
+shader_parameter/clip_smoothing = 0.02
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_5ckkb")
+shader_parameter/noise_scale = Vector2(0.2, 0.2)
+shader_parameter/noise_intensity = 0.35
+shader_parameter/variation_color = Color(0.49803922, 0.5019608, 0.14901961, 1)
+shader_parameter/roughness = 0.9
+shader_parameter/specular = 0.2
+
+[sub_resource type="BoxMesh" id="BoxMesh_aou4a"]
+material = SubResource("ShaderMaterial_5ckkb")
+size = Vector3(0.2508545, 1, 0.36773682)
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_5ckkb"]
+
+[sub_resource type="Sky" id="Sky_5ckkb"]
+sky_material = SubResource("PhysicalSkyMaterial_5ckkb")
+
+[sub_resource type="Environment" id="Environment_u177a"]
+background_mode = 2
+background_energy_multiplier = 2.81
+sky = SubResource("Sky_5ckkb")
+ambient_light_source = 3
+tonemap_mode = 3
+tonemap_white = 6.0
+ssao_radius = 1.5
+ssao_power = 2.0
+glow_enabled = true
+glow_levels/1 = 0.7
+glow_levels/2 = 0.7
+glow_levels/3 = 0.7
+glow_levels/4 = 0.0
+glow_bloom = 0.15
+volumetric_fog_density = 0.01
+volumetric_fog_albedo = Color(0.70383465, 0.6527985, 0.7995215, 1)
+adjustment_enabled = true
+adjustment_contrast = 1.15
+adjustment_saturation = 1.05
+
+[node name="Node3D" type="Node3D" unique_id=1355005133]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=388228014]
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=776019474]
+offset_right = 292.0
+offset_bottom = 23.0
+script = ExtResource("3_fw4w5")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=926880653]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1727834230]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.05542, 0.6339679, 7.6123047)
+shape = SubResource("BoxShape3D_6ba58")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=390078714]
+transform = Transform3D(2382.9211, 0, 0, 0, 1, 0, 0, 0, 1929.7299, 31.560913, 0, 26.088562)
+mesh = SubResource("BoxMesh_aou4a")
+
+[node name="Player" parent="." unique_id=218347238 instance=ExtResource("1_lgngo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.478745, 2.1279626, 0)
+
+[node name="Iluminacion" type="Node" parent="." unique_id=647590727]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Iluminacion" unique_id=2011047601]
+environment = SubResource("Environment_u177a")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Iluminacion" unique_id=942240534]
+transform = Transform3D(1, 0, 0, 0, -0.42671993, 0.90438384, 0, -0.90438384, -0.42671993, 0, 1415.133, 1885.5056)
+light_energy = 0.73
+shadow_enabled = true
+
+[node name="Items" type="Node" parent="." unique_id=129824533]
+
+[node name="Zapatillas" parent="Items" unique_id=1444834833 instance=ExtResource("4_otwa2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5475445, 1.2969103, 2.9723558)
+
+[node name="Terrachispas" parent="Items" unique_id=852883464 instance=ExtResource("4_otwa2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2602415, 1.2557158, 5.174524)
+
+[node name="Daga" parent="Items" unique_id=1172651414 instance=ExtResource("4_otwa2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.40615, 1.7542219, -0.871685)
+
+[node name="Enemigos" type="Node" parent="." unique_id=1459176867]
+
+[node name="Enemigo" parent="Enemigos" unique_id=1703176541 instance=ExtResource("2_fw4w5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2377658, 1.7046576)
+
+[node name="Enemigo2" parent="Enemigos" unique_id=2029272141 instance=ExtResource("2_fw4w5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2377658, 15.020517)
+
+[node name="Enemigo6" parent="Enemigos" unique_id=2014017914 instance=ExtResource("2_fw4w5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2377658, 8.228085)
+
+[node name="Enemigo5" parent="Enemigos" unique_id=157162341 instance=ExtResource("2_fw4w5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8538036, 2.7074378, 6.0289783)
+
+[node name="Enemigo3" parent="Enemigos" unique_id=1909273908 instance=ExtResource("2_fw4w5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.766614, 2.2377658, 8.228085)
+
+[node name="Enemigo4" parent="Enemigos" unique_id=1989232314 instance=ExtResource("2_fw4w5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9496083, 2.2377658, 8.228085)
+
+[node name="Spawners" type="Node" parent="." unique_id=328473088]
+
+[node name="ItemSpawner" parent="Spawners" unique_id=967341465 instance=ExtResource("7_t8jxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.2305355, 1.9588366, 0)
+chest_scene = ExtResource("4_otwa2")
+cantidad = 10
+
+[node name="EnemySpawner" parent="Spawners" unique_id=1635723863 instance=ExtResource("7_2hh7m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.3048587, 0)
+spawn_interval = 0.1
+spawn_on_start = 10
