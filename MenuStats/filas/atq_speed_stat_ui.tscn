@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://dl70tdykt8rql"]
+
+[ext_resource type="Texture2D" uid="uid://bekx7wknfc68r" path="res://Assets/speed-svgrepo-com.svg" id="1_2kdkj"]
+
+[node name="HBoxContainer" type="HBoxContainer" unique_id=1644533386]
+offset_right = 219.0
+offset_bottom = 64.0
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1469994696]
+custom_maximum_size = Vector2(64, 64)
+propagate_maximum_size = true
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_2kdkj")
+stretch_mode = 5
+
+[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=654179968]
+layout_mode = 2
+theme_override_constants/margin_right = 7
+
+[node name="NombreStat" type="Label" parent="." unique_id=1505291158]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Atq Speed"
+vertical_alignment = 3
+
+[node name="MarginContainer3" type="MarginContainer" parent="." unique_id=1101790586]
+layout_mode = 2
+theme_override_constants/margin_right = 38
+
+[node name="ValorStat" type="Label" parent="." unique_id=1692060478]
+layout_mode = 2
+text = "+0"
+horizontal_alignment = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=943415510]
+layout_mode = 2
+theme_override_constants/margin_right = 19

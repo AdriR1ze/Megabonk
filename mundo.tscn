@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://4kygrfrsnig3"]
 
+[ext_resource type="PackedScene" uid="uid://cvvuaravhrvkn" path="res://MenuStats/menu_stats.tscn" id="1_2hh7m"]
 [ext_resource type="PackedScene" uid="uid://cf28t3clpsbee" path="res://player.tscn" id="1_lgngo"]
 [ext_resource type="Shader" uid="uid://ddbes2mdlyvwi" path="res://pasto.gdshader" id="2_aou4a"]
 [ext_resource type="Texture2D" uid="uid://bfp2c6ombpolk" path="res://hierba-textura-fluida-patron-cesped-natural_172107-1308.png" id="3_5ckkb"]
-[ext_resource type="Script" uid="uid://nq4pmn1vw4vg" path="res://label.gd" id="3_fw4w5"]
 [ext_resource type="PackedScene" uid="uid://bhuiggvoli0bh" path="res://item.tscn" id="4_otwa2"]
 [ext_resource type="PackedScene" uid="uid://bmlrr2ib6dwf5" path="res://spawner.tscn" id="7_2hh7m"]
 [ext_resource type="PackedScene" uid="uid://bsvowmsukqcnn" path="res://item_spawner.tscn" id="7_t8jxu"]
@@ -69,10 +69,8 @@ adjustment_saturation = 1.05
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=388228014]
 
-[node name="Label" type="Label" parent="CanvasLayer" unique_id=776019474]
-offset_right = 292.0
-offset_bottom = 23.0
-script = ExtResource("3_fw4w5")
+[node name="Control" parent="CanvasLayer" unique_id=1374605852 instance=ExtResource("1_2hh7m")]
+visible = false
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=926880653]
 

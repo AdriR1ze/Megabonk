@@ -2,7 +2,7 @@ extends Node
 
 var items_player: Array = []
 var player: Node3D
-var label_move_speed : Control
+var control_node : Control
 signal stats_changed
 func _ready() -> void:
 	pass
@@ -49,7 +49,6 @@ func _reset_stats() -> void:
 
 func _set_stats(item) -> void:
 	PlayerStats.move_speed += item.move_speed
-	label_move_speed.text = str(PlayerStats.move_speed)
 	PlayerStats.defense += item.defense
 	PlayerStats.evasion += item.evasion
 	PlayerStats.atq_speed += item.atq_speed

@@ -8,5 +8,5 @@ id = 1
 display_name = "Terrachispa"
 description = "Con esto no hay nadie mas rapido que vos"
 move_speed = 0.5
-atq_speed = 5.0
+atq_speed = 0.2
 metadata/_custom_type_script = "uid://dgj8vsixewv00"
