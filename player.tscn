@@ -22,7 +22,7 @@ shape = SubResource("CapsuleShape3D_u177a")
 [node name="pivot" type="Node3D" parent="." unique_id=1660800282]
 
 [node name="Camera3D" type="Camera3D" parent="pivot" unique_id=2032213160]
-transform = Transform3D(1, 0, 0, 0, 0.7458309, 0.6661353, 0, -0.6661353, 0.7458309, 0, 4.895091, 3.9843407)
+transform = Transform3D(1, 0, 0, 0, 0.9226294, 0.3856877, 0, -0.3856877, 0.9226294, 0, 5.7093086, 6.946498)
 far = 500.0
 
 [node name="SpawnPoint" type="Marker3D" parent="." unique_id=330301758]

@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://pju52ihjcnme"]
+
+[ext_resource type="Script" uid="uid://o1iplridyblk" path="res://Armas/LanzaCohete.gd" id="1_3tbdx"]
+[ext_resource type="PackedScene" uid="uid://cdncsf25sgen3" path="res://Balas/balabomba.tscn" id="2_dq5lx"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_u177a"]
+height = 0.001
+radius = 7.0234375
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dq5lx"]
+albedo_color = Color(0.34901962, 1, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_hlqc1"]
+material = SubResource("StandardMaterial3D_dq5lx")
+
+[node name="AreaDeArma" type="Area3D" unique_id=1699589347]
+collision_layer = 32768
+collision_mask = 32768
+script = ExtResource("1_3tbdx")
+bala = ExtResource("2_dq5lx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=349896116]
+shape = SubResource("CylinderShape3D_u177a")
+
+[node name="Timer" type="Timer" parent="." unique_id=2008702345]
+wait_time = 0.1
+autostart = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=833225215]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 2.5867033, 1.3394594, 1.5402956)
+mesh = SubResource("CapsuleMesh_hlqc1")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

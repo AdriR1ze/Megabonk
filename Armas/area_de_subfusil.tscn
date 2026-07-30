@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://cvsk46pitwsxm"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_u177a"]
+height = 0.001
+radius = 7.0234375
+
+[sub_resource type="BoxMesh" id="BoxMesh_u177a"]
+size = Vector3(0.7663574, 1, 1.9326172)
+
+[node name="AreaDeArma" type="Area3D" unique_id=1699589347]
+collision_layer = 32768
+collision_mask = 32768
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=349896116]
+shape = SubResource("CylinderShape3D_u177a")
+
+[node name="Timer" type="Timer" parent="." unique_id=2008702345]
+wait_time = 0.401
+autostart = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1696721989]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0566941, 0.79707646, -1.3381078)
+mesh = SubResource("BoxMesh_u177a")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

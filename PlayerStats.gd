@@ -13,12 +13,12 @@ signal level_up
 
 var level := 1
 var xp := 0
-var xp_needed := 10
+var xp_needed := 4
 
 func add_xp(amount):
 
 	xp += amount
-
+	print("XP ",xp)
 	while xp >= xp_needed:
 
 		xp -= xp_needed

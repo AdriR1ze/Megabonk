@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bk63ylaj30pom"]
+
+[ext_resource type="Script" uid="uid://bjukycyb2tx1o" path="res://Armas/arma.gd" id="1_cec7x"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_u177a"]
+height = 0.001
+radius = 7.0234375
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_hlqc1"]
+
+[node name="AreaDeArma" type="Area3D" unique_id=1699589347]
+collision_layer = 32768
+collision_mask = 32768
+script = ExtResource("1_cec7x")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=349896116]
+shape = SubResource("CylinderShape3D_u177a")
+
+[node name="Timer" type="Timer" parent="." unique_id=2008702345]
+wait_time = 0.401
+autostart = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=833225215]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, -2.349905, 1.3394594, 1.5402956)
+mesh = SubResource("CapsuleMesh_hlqc1")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

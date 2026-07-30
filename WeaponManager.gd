@@ -1,7 +1,10 @@
 extends Node
 
 var all_weapons : Array[WeaponData] = [
-	preload("res://Resources/Armas/pistolacomun.tres"),
+	preload("res://Resources/Armas/Pistola.tres"),	
+#	preload("res://Resources/Armas/Subfusil.tres"),
+	preload("res://Resources/Armas/LanzaCohete.tres"),
+#	preload(),
 ]
 var player : Node3D
 var weapons : Array = []
@@ -31,6 +34,7 @@ func add_weapon():
 		if !weapons.any(func(w): return w.data.weapon_name == weapon.weapon_name):
 			disponibles.append(weapon)
 
+
 	print("Disponibles:", disponibles.size())
 
 	if disponibles.is_empty():
@@ -39,19 +43,26 @@ func add_weapon():
 		return
 
 	var nueva = disponibles.pick_random()
-
 	print("Arma elegida:", nueva.weapon_name)
 
 	var instancia = nueva.scene.instantiate()
 
-	print("Instanciada:", instancia)
-
 	instancia.data = nueva.duplicate(true)
 	instancia.player = player
-	print("Data asignada:", instancia.data)
 
-	get_parent().add_child(instancia)
+	print("---------------")
+	print("Arma:", instancia.name)
+	print("Padre:", get_parent().name)
+	print("Player:", player)
+	print("Scene:", nueva.scene)
+	print("Data:", instancia.data.weapon_name)
 
+	player.add_child(instancia)
+	instancia.position = Vector3.ZERO
+	print("Ahora el padre es:", instancia.get_parent())
+	print("---------------")
+	for hijo in instancia.get_children():
+		print(hijo)
 	print("Agregada al árbol")
 
 	weapons.append(instancia)

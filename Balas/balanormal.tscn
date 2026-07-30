@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cumvllbldvrhr" path="res://Balas/hit_box_bala.tscn" id="2_nn1u0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_becj5"]
-albedo_color = Color(0.047058824, 0.050980393, 1, 1)
+albedo_color = Color(0.36900795, 0.3275854, 0.3662288, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_u177a"]
 material = SubResource("StandardMaterial3D_becj5")

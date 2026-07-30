@@ -4,23 +4,19 @@
 [ext_resource type="PackedScene" uid="uid://cumvllbldvrhr" path="res://Balas/hit_box_bala.tscn" id="2_hhvbg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_becj5"]
-albedo_color = Color(0.047058824, 0.050980393, 1, 1)
+albedo_color = Color(0.85895306, 0.8738458, 0.9499765, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_u177a"]
 material = SubResource("StandardMaterial3D_becj5")
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_u177a"]
-
 [node name="bala" type="CharacterBody3D" unique_id=119098857]
+transform = Transform3D(3.105, 0, 0, 0, 3.105, 0, 0, 0, 3.105, 0, 0, 0)
 script = ExtResource("1_3c1us")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=205985906]
 mesh = SubResource("SphereMesh_u177a")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1993918081]
-shape = SubResource("SphereShape3D_u177a")
-
 [node name="HitBoxBala" parent="." unique_id=948943549 instance=ExtResource("2_hhvbg")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+transform = Transform3D(1.305, 0, 0, 0, 1.305, 0, 0, 0, 1.305, 0, 0, 0)
 
 [connection signal="body_entered" from="HitBoxBala" to="." method="_on_hit_box_bala_body_entered"]

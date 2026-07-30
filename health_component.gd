@@ -1,9 +1,9 @@
 extends Node
 class_name HealthComponent
 
-@export var max_health := 100.0
+@export var max_health := 1.0
 
-var health := 100.0
+var health := 1.0
 
 @onready var parent = get_parent()
 

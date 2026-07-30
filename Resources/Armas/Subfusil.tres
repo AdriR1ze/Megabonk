@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://cnhtg58s22e0y"]
+
+[ext_resource type="PackedScene" uid="uid://cvsk46pitwsxm" path="res://Armas/area_de_subfusil.tscn" id="1_puju1"]
+[ext_resource type="Script" uid="uid://bvufqb6f7hqio" path="res://WeaponData.gd" id="1_wstdk"]
+
+[resource]
+script = ExtResource("1_wstdk")
+weapon_name = "Subfusil"
+scene = ExtResource("1_puju1")
+damage = 5.0
+cooldown = 7.0
+rango = 300.0
+crecimiento_damage = 1.0
+metadata/_custom_type_script = "uid://bvufqb6f7hqio"

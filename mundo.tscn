@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://cf28t3clpsbee" path="res://player.tscn" id="1_lgngo"]
 [ext_resource type="Shader" uid="uid://ddbes2mdlyvwi" path="res://pasto.gdshader" id="2_aou4a"]
-[ext_resource type="PackedScene" uid="uid://bhu7dmau1esuu" path="res://enemigo.tscn" id="2_fw4w5"]
 [ext_resource type="Texture2D" uid="uid://bfp2c6ombpolk" path="res://hierba-textura-fluida-patron-cesped-natural_172107-1308.png" id="3_5ckkb"]
 [ext_resource type="Script" uid="uid://nq4pmn1vw4vg" path="res://label.gd" id="3_fw4w5"]
 [ext_resource type="PackedScene" uid="uid://bhuiggvoli0bh" path="res://item.tscn" id="4_otwa2"]
@@ -111,24 +110,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.40615, 1.7542219, -0.871685
 
 [node name="Enemigos" type="Node" parent="." unique_id=1459176867]
 
-[node name="Enemigo" parent="Enemigos" unique_id=1703176541 instance=ExtResource("2_fw4w5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2377658, 1.7046576)
-
-[node name="Enemigo2" parent="Enemigos" unique_id=2029272141 instance=ExtResource("2_fw4w5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2377658, 15.020517)
-
-[node name="Enemigo6" parent="Enemigos" unique_id=2014017914 instance=ExtResource("2_fw4w5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2377658, 8.228085)
-
-[node name="Enemigo5" parent="Enemigos" unique_id=157162341 instance=ExtResource("2_fw4w5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8538036, 2.7074378, 6.0289783)
-
-[node name="Enemigo3" parent="Enemigos" unique_id=1909273908 instance=ExtResource("2_fw4w5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.766614, 2.2377658, 8.228085)
-
-[node name="Enemigo4" parent="Enemigos" unique_id=1989232314 instance=ExtResource("2_fw4w5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9496083, 2.2377658, 8.228085)
-
 [node name="Spawners" type="Node" parent="." unique_id=328473088]
 
 [node name="ItemSpawner" parent="Spawners" unique_id=967341465 instance=ExtResource("7_t8jxu")]
@@ -138,5 +119,5 @@ cantidad = 10
 
 [node name="EnemySpawner" parent="Spawners" unique_id=1635723863 instance=ExtResource("7_2hh7m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.3048587, 0)
-spawn_interval = 0.1
-spawn_on_start = 10
+max_enemies = 1
+spawn_on_start = 1
