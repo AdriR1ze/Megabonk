@@ -18,12 +18,12 @@ var xp_needed := 4
 func add_xp(amount):
 
 	xp += amount
-	print("XP ",xp)
+	
 	while xp >= xp_needed:
 
 		xp -= xp_needed
 		level += 1
 		xp_needed = int(xp_needed * 1.5)
-
+		print("Level up, level: ", level)
 		level_up.emit()
 		GameManager.seleccionar_arma.emit()

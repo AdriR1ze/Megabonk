@@ -4,7 +4,7 @@ extends Node
 var player : Node3D
 var weapons : Array = []
 const MAX_WEAPONS = 3
-
+@onready var disponibles = ArmaDB.get_all_armas()
 func _ready():
 #	PlayerStats.level_up.connect(level_up)
 	await get_tree().physics_frame
@@ -17,20 +17,20 @@ func add_weapon(ArmaID):
 
 	print("Entró a add_weapon")
 	print("Todas las armas son: ", ArmaDB.get_all_armas())
-	var disponibles = []
 
-	for weapon in ArmaDB.get_all_armas():
-		print("Revisando:", weapon.weapon_name)
-
-		if !weapons.any(func(w): return w.data.weapon_name == weapon.weapon_name):
-			disponibles.append(weapon.id)
+	for a in weapons:
+		for weapon in ArmaDB.get_all_armas():
+			print("Revisando:", weapon.weapon_name)
+			push_error("HOLAl")
+			if a.id == weapon.id:
+				disponibles.append(weapon.id)
 
 
 	print("Disponibles:", disponibles.size())
 
 	if disponibles.is_empty():
 		print("No hay armas disponibles")
-		upgrade_weapon()
+		upgrade_weapon(ArmaID)
 		return
 
 	var nueva = ArmaDB.get_arma(disponibles.find(ArmaID))
@@ -61,9 +61,9 @@ func add_weapon(ArmaID):
 
 	print("Total armas:", weapons.size())
 
-func upgrade_weapon():
+func upgrade_weapon(ArmaID):
 
 	if weapons.is_empty():
 		return
 
-	weapons.pick_random().upgrade()
+	ArmaDB.get_arma(ArmaID).upgrade()
