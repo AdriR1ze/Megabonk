@@ -9,7 +9,6 @@ func _ready() -> void:
 	add_to_group("player")
 	WeaponManager.player = self
 	await get_tree().process_frame
-	WeaponManager.add_weapon()
 	ItemManager.player = self
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():

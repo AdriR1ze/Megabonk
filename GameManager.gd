@@ -1,5 +1,7 @@
 extends Node
-
+#UI
+# --------Seleccionar Arma--------
+signal seleccionar_arma
 var coins: int = 1000
 var chests_opened: int = 0
 

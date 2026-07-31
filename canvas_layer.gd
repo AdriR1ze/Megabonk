@@ -1,9 +1,7 @@
 extends Control
 func _ready() -> void:
 	ItemManager.stats_changed.connect(_on_stats_changed)
-	
-func _process(delta: float) -> void:
-	print("hola")
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("menu"):
 		visible = !visible

@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cvvuaravhrvkn" path="res://MenuStats/menu_stats.tscn" id="1_2hh7m"]
 [ext_resource type="PackedScene" uid="uid://cf28t3clpsbee" path="res://player.tscn" id="1_lgngo"]
 [ext_resource type="Shader" uid="uid://ddbes2mdlyvwi" path="res://pasto.gdshader" id="2_aou4a"]
+[ext_resource type="PackedScene" uid="uid://dvqphdeiurme1" path="res://menu armas.tscn" id="2_t8jxu"]
 [ext_resource type="Texture2D" uid="uid://bfp2c6ombpolk" path="res://hierba-textura-fluida-patron-cesped-natural_172107-1308.png" id="3_5ckkb"]
 [ext_resource type="PackedScene" uid="uid://bhuiggvoli0bh" path="res://item.tscn" id="4_otwa2"]
 [ext_resource type="PackedScene" uid="uid://bmlrr2ib6dwf5" path="res://spawner.tscn" id="7_2hh7m"]
@@ -69,7 +70,10 @@ adjustment_saturation = 1.05
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=388228014]
 
-[node name="Control" parent="CanvasLayer" unique_id=1374605852 instance=ExtResource("1_2hh7m")]
+[node name="Menu" parent="CanvasLayer" unique_id=1374605852 instance=ExtResource("1_2hh7m")]
+visible = false
+
+[node name="MenuArmas" parent="CanvasLayer" unique_id=1748608180 instance=ExtResource("2_t8jxu")]
 visible = false
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=926880653]
@@ -117,5 +121,6 @@ cantidad = 10
 
 [node name="EnemySpawner" parent="Spawners" unique_id=1635723863 instance=ExtResource("7_2hh7m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.3048587, 0)
-max_enemies = 1
+max_enemies = 10
+spawn_interval = 0.5
 spawn_on_start = 1

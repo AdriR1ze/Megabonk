@@ -1,14 +1,52 @@
 [gd_scene format=3 uid="uid://dvqphdeiurme1"]
 
-[node name="Control" type="Control" unique_id=1748608180]
+[ext_resource type="PackedScene" uid="uid://3r1b46ge6v8m" path="res://arma_ui.tscn" id="1_c514i"]
+[ext_resource type="Script" uid="uid://bfapjdltloa10" path="res://menu_armas.gd" id="1_mbgq4"]
+
+[node name="MenuArmas" type="Control" unique_id=1748608180]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_mbgq4")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=2072090431]
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=1625789161]
 layout_mode = 0
-offset_right = 1153.0
-offset_bottom = 646.0
+offset_right = 1156.0
+offset_bottom = 649.0
+color = Color(0.27022192, 0.27022192, 0.27022198, 0.40392157)
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=535815148]
+layout_mode = 0
+offset_left = 98.0
+offset_top = 82.0
+offset_right = 1053.0
+offset_bottom = 576.0
+color = Color(0.30308107, 0.19644424, 0.22608238, 0.69411767)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect" unique_id=2072090431]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 32.0
+offset_right = 914.0
+offset_bottom = 463.0
+
+[node name="ArmaSelect" parent="ColorRect/HBoxContainer" unique_id=2033928121 instance=ExtResource("1_c514i")]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect/HBoxContainer" unique_id=1641620975]
+layout_mode = 2
+theme_override_constants/margin_right = 140
+
+[node name="ArmaSelect2" parent="ColorRect/HBoxContainer" unique_id=2066252931 instance=ExtResource("1_c514i")]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="ColorRect/HBoxContainer" unique_id=1433697920]
+layout_mode = 2
+theme_override_constants/margin_right = 140
+
+[node name="ArmaSelect3" parent="ColorRect/HBoxContainer" unique_id=1290549396 instance=ExtResource("1_c514i")]
+layout_mode = 2

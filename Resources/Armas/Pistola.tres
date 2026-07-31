@@ -7,4 +7,5 @@
 script = ExtResource("1_cev2q")
 weapon_name = "Pistola"
 scene = ExtResource("1_mn4qw")
+id = 1
 metadata/_custom_type_script = "uid://bvufqb6f7hqio"

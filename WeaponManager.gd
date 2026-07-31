@@ -1,38 +1,29 @@
 extends Node
 
-var all_weapons : Array[WeaponData] = [
-	preload("res://Resources/Armas/Pistola.tres"),	
-#	preload("res://Resources/Armas/Subfusil.tres"),
-	preload("res://Resources/Armas/LanzaCohete.tres"),
-#	preload(),
-]
+
 var player : Node3D
 var weapons : Array = []
 const MAX_WEAPONS = 3
 
 func _ready():
-	PlayerStats.level_up.connect(level_up)
+#	PlayerStats.level_up.connect(level_up)
+	await get_tree().physics_frame
+	var random_number = randi_range(0,ArmaDB.get_all_armas().size() - 1)
+	add_weapon(random_number)
 
-func level_up():
-	print("LEVEL UP")
-	print("Armas actuales:", weapons.size())
+#		upgrade_weapon()
 
-	if weapons.size() < MAX_WEAPONS:
-		add_weapon()
-	else:
-		upgrade_weapon()
-
-func add_weapon():
+func add_weapon(ArmaID):
 
 	print("Entró a add_weapon")
-	print("Todas las armas son: ", all_weapons)
+	print("Todas las armas son: ", ArmaDB.get_all_armas())
 	var disponibles = []
 
-	for weapon in all_weapons:
+	for weapon in ArmaDB.get_all_armas():
 		print("Revisando:", weapon.weapon_name)
 
 		if !weapons.any(func(w): return w.data.weapon_name == weapon.weapon_name):
-			disponibles.append(weapon)
+			disponibles.append(weapon.id)
 
 
 	print("Disponibles:", disponibles.size())
@@ -42,8 +33,9 @@ func add_weapon():
 		upgrade_weapon()
 		return
 
-	var nueva = disponibles.pick_random()
+	var nueva = ArmaDB.get_arma(disponibles.find(ArmaID))
 	print("Arma elegida:", nueva.weapon_name)
+
 
 	var instancia = nueva.scene.instantiate()
 
@@ -51,7 +43,7 @@ func add_weapon():
 	instancia.player = player
 
 	print("---------------")
-	print("Arma:", instancia.name)
+	print("Arma:", instancia.name)	
 	print("Padre:", get_parent().name)
 	print("Player:", player)
 	print("Scene:", nueva.scene)

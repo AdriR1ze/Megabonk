@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://rjpbee3644so"]
+
+[ext_resource type="Script" uid="uid://c0dswg2k4vjyw" path="res://Balas/bala.gd" id="1_608vp"]
+[ext_resource type="PackedScene" uid="uid://cumvllbldvrhr" path="res://Balas/hit_box_bala.tscn" id="2_ibcpg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_becj5"]
+albedo_color = Color(0.28537834, 0.38319057, 0.062190734, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_u177a"]
+material = SubResource("StandardMaterial3D_becj5")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_u177a"]
+
+[node name="bala" type="CharacterBody3D" unique_id=119098857]
+transform = Transform3D(0.7401102, 0, 0, 0, 0.8334223, 0, 0, 0, 1.8452399, 0, 0, 0)
+script = ExtResource("1_608vp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=205985906]
+mesh = SubResource("SphereMesh_u177a")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1993918081]
+shape = SubResource("SphereShape3D_u177a")
+
+[node name="HitBoxBala" parent="." unique_id=948943549 instance=ExtResource("2_ibcpg")]
+
+[connection signal="body_entered" from="HitBoxBala" to="." method="_on_hit_box_bala_body_entered"]

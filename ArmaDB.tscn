@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dmoovsmofy021"]
+
+[ext_resource type="Script" uid="uid://vnr3yjqdisjq" path="res://arma_db.gd" id="1_6ssgn"]
+[ext_resource type="Script" uid="uid://bvufqb6f7hqio" path="res://WeaponData.gd" id="2_w4xpu"]
+[ext_resource type="Resource" uid="uid://dagjh27xjw7ye" path="res://Resources/Armas/LanzaCohete.tres" id="3_02grd"]
+[ext_resource type="Resource" uid="uid://xjwb6l3bpsgp" path="res://Resources/Armas/Pistola.tres" id="4_tlq27"]
+[ext_resource type="Resource" uid="uid://cnhtg58s22e0y" path="res://Resources/Armas/Subfusil.tres" id="5_fey4m"]
+
+[node name="ArmaDb" type="Node" unique_id=1669003703]
+script = ExtResource("1_6ssgn")
+lista_armas = Array[ExtResource("2_w4xpu")]([ExtResource("3_02grd"), ExtResource("4_tlq27"), ExtResource("5_fey4m")])

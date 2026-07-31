@@ -22,6 +22,7 @@ ItemManager="*uid://b8wjjgj64wk7t"
 GameManager="*uid://bgrvv7t6d2vrw"
 PlayerStats="*uid://bh3spdwmf7k1k"
 WeaponManager="*uid://cb5gxrl4euti4"
+ArmaDB="*uid://dmoovsmofy021"
 
 [display]
 

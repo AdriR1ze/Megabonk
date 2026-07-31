@@ -26,3 +26,4 @@ func add_xp(amount):
 		xp_needed = int(xp_needed * 1.5)
 
 		level_up.emit()
+		GameManager.seleccionar_arma.emit()

@@ -3,6 +3,8 @@ class_name WeaponData
 
 @export var weapon_name := ""
 @export var scene : PackedScene
+@export var id : int
+@export var texture_sprite : Texture2D
 
 @export var damage : float = 10
 @export var cooldown : float = 0.5
