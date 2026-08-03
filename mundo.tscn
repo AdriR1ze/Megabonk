@@ -122,5 +122,6 @@ cantidad = 10
 [node name="EnemySpawner" parent="Spawners" unique_id=1635723863 instance=ExtResource("7_2hh7m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.3048587, 0)
 max_enemies = 10
-spawn_interval = 0.5
+spawn_interval = 3.0
 spawn_on_start = 1
+amount_enemies = 5

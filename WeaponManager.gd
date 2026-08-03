@@ -9,31 +9,37 @@ func _ready():
 #	PlayerStats.level_up.connect(level_up)
 	await get_tree().physics_frame
 	var random_number = randi_range(0,ArmaDB.get_all_armas().size() - 1)
-	add_weapon(random_number)
+	add_weapon(ArmaDB.get_arma(random_number))
 
 #		upgrade_weapon()
 
-func add_weapon(ArmaID):
+func add_weapon(Arma):
 
 	print("Entró a add_weapon")
 	print("Todas las armas son: ", ArmaDB.get_all_armas())
-
-	for a in weapons:
-		for weapon in ArmaDB.get_all_armas():
-			print("Revisando:", weapon.weapon_name)
-			push_error("HOLAl")
-			if a.id == weapon.id:
-				disponibles.append(weapon.id)
+	for weapon in ArmaDB.get_all_armas():
+		if weapons:
+			for a in weapons:
+			
+				print("Revisando:", weapon.weapon_name)
+				push_error("HOLAl")
+				if a.id != weapon.id:
+					disponibles.append(weapon.id)
+		else:
+			disponibles.append(weapon)
 
 
 	print("Disponibles:", disponibles.size())
-
+	print(disponibles, Arma)
 	if disponibles.is_empty():
 		print("No hay armas disponibles")
-		upgrade_weapon(ArmaID)
+		upgrade_weapon(Arma)
 		return
+	var nueva 
+	for a in disponibles:
+		if a == Arma:
+			nueva = Arma
 
-	var nueva = ArmaDB.get_arma(disponibles.find(ArmaID))
 	print("Arma elegida:", nueva.weapon_name)
 
 
@@ -61,9 +67,9 @@ func add_weapon(ArmaID):
 
 	print("Total armas:", weapons.size())
 
-func upgrade_weapon(ArmaID):
+func upgrade_weapon(Arma):
 
 	if weapons.is_empty():
 		return
 
-	ArmaDB.get_arma(ArmaID).upgrade()
+	Arma.upgrade()

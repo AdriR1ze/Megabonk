@@ -25,8 +25,8 @@ func get_all_armas_no_usadas() -> Array:
 	var armas_elegibles = []
 	for a in armas.values():
 		print(WeaponManager.disponibles)
-		if WeaponManager.disponibles.has(a.id):
+		if WeaponManager.disponibles.has(a):
 			armas_elegibles.append([a,0])
-		if WeaponManager.weapons.has(a.id):
+		if WeaponManager.weapons.has(a):
 			armas_elegibles.append([a,1])
 	return armas_elegibles
