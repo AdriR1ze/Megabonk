@@ -14,32 +14,31 @@ func _ready():
 #		upgrade_weapon()
 
 func add_weapon(Arma):
-
 	print("Entró a add_weapon")
 	print("Todas las armas son: ", ArmaDB.get_all_armas())
+	disponibles.clear()
+
 	for weapon in ArmaDB.get_all_armas():
-		if weapons:
-			for a in weapons:
-			
-				print("Revisando:", weapon.weapon_name)
-				push_error("HOLAl")
-				if a.id != weapon.id:
-					disponibles.append(weapon.id)
-		else:
+		var tiene = false
+
+		for a in weapons:
+			if a.data.id == weapon.id:
+				tiene = true
+				break
+
+		if !tiene:
 			disponibles.append(weapon)
-
-
 	print("Disponibles:", disponibles.size())
-	print(disponibles, Arma)
-	if disponibles.is_empty():
-		print("No hay armas disponibles")
-		upgrade_weapon(Arma)
-		return
+	
 	var nueva 
-	for a in disponibles:
-		if a == Arma:
-			nueva = Arma
 
+	for ag in disponibles:
+		if ag == Arma:
+			nueva = Arma
+	if !nueva:
+		upgrade_weapon(Arma)
+		print("UPGRADEANDOOOOOOOO")
+		return
 	print("Arma elegida:", nueva.weapon_name)
 
 
@@ -59,9 +58,6 @@ func add_weapon(Arma):
 	instancia.position = Vector3.ZERO
 	print("Ahora el padre es:", instancia.get_parent())
 	print("---------------")
-	for hijo in instancia.get_children():
-		print(hijo)
-	print("Agregada al árbol")
 
 	weapons.append(instancia)
 
