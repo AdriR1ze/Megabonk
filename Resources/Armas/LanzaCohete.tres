@@ -7,6 +7,11 @@
 script = ExtResource("1_ch2jg")
 weapon_name = "LanzaCohete"
 scene = ExtResource("1_verr0")
-damage = 30.0
-cooldown = 2.0
+id = 3
+damage = 35.0
+cooldown = 2.4
+rango = 18.0
+crecimiento_damage = 8.0
+crecimiento_rango = 1.2
+crecimiento_cooldown = 0.04
 metadata/_custom_type_script = "uid://bvufqb6f7hqio"

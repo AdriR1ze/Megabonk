@@ -23,3 +23,4 @@ func _on_seleccionar_pressed() -> void:
 		WeaponManager.upgrade_weapon(arma[0])
 
 	get_tree().paused = false
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

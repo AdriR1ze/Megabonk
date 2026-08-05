@@ -9,5 +9,6 @@ func perform_attack(target):
 	get_tree().current_scene.add_child(bullet)
 	bullet.global_position = player.spawnpoint.global_position + direccion * 1.2
 	bullet.direccion = direccion
-	bullet.player_atack = PlayerStats.atack * 1.2
+	bullet.damage = data.damage
+	bullet.player_atack = PlayerStats.atack
 	$Timer.start()

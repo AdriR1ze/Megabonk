@@ -2,18 +2,12 @@
 
 [ext_resource type="Script" uid="uid://c0dswg2k4vjyw" path="res://Balas/bala.gd" id="1_2jupy"]
 [ext_resource type="PackedScene" uid="uid://cumvllbldvrhr" path="res://Balas/hit_box_bala.tscn" id="2_nn1u0"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_becj5"]
-albedo_color = Color(0.36900795, 0.3275854, 0.3662288, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_u177a"]
-material = SubResource("StandardMaterial3D_becj5")
+[ext_resource type="PackedScene" uid="uid://b1ymfiyb8r81y" path="res://Assets/Models/balanormal_mesh.glb" id="3_balanormalglb"]
 
 [node name="bala" type="CharacterBody3D" unique_id=119098857]
 script = ExtResource("1_2jupy")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=205985906]
-mesh = SubResource("SphereMesh_u177a")
+[node name="MeshInstance3D" parent="." unique_id=205985906 instance=ExtResource("3_balanormalglb")]
 
 [node name="HitBoxBala" parent="." unique_id=948943549 instance=ExtResource("2_nn1u0")]
 

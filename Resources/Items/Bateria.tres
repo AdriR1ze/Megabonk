@@ -7,5 +7,5 @@ script = ExtResource("1_trhja")
 id = 3
 display_name = "Bateria"
 description = "Te pones a full con esta"
-atq_speed = 0.5
+atq_speed = 0.2
 metadata/_custom_type_script = "uid://dgj8vsixewv00"

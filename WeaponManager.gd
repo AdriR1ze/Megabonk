@@ -1,6 +1,8 @@
 extends Node
 
 
+signal weapons_changed
+
 var player : Node3D
 var weapons : Array = []
 const MAX_WEAPONS = 3
@@ -14,6 +16,7 @@ func _ready():
 #		upgrade_weapon()
 
 func add_weapon(Arma):
+	print("ARMAAAAAA",Arma)
 	print("Entró a add_weapon")
 	print("Todas las armas son: ", ArmaDB.get_all_armas())
 	disponibles.clear()
@@ -62,10 +65,22 @@ func add_weapon(Arma):
 	weapons.append(instancia)
 
 	print("Total armas:", weapons.size())
+	weapons_changed.emit()
 
 func upgrade_weapon(Arma):
-
 	if weapons.is_empty():
 		return
 
-	Arma.upgrade()
+	# Buscar la instancia que tiene el mismo id que Arma y subir su .data
+	for instancia in weapons:
+		if is_instance_valid(instancia) and instancia.data.id == Arma.id:
+			instancia.data.upgrade()
+			print("Arma mejorada: ", instancia.data.weapon_name, " -> Nivel ", instancia.data.level)
+			weapons_changed.emit()
+			return
+
+	# Si no se encontró por id, mejorar la primera arma disponible
+	if is_instance_valid(weapons[0]):
+		weapons[0].data.upgrade()
+		print("Arma mejorada (fallback): ", weapons[0].data.weapon_name)
+		weapons_changed.emit()

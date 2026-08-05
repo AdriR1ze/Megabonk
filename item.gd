@@ -4,6 +4,7 @@ class_name Item
 @export var id : int
 @export var display_name : String
 @export var description : String
+@export var texture_sprite : Texture2D
 
 @export var stats : bool = true
 @export var move_speed : float

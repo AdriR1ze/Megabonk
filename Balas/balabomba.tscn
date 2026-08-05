@@ -2,19 +2,13 @@
 
 [ext_resource type="Script" uid="uid://c0dswg2k4vjyw" path="res://Balas/bala.gd" id="1_3c1us"]
 [ext_resource type="PackedScene" uid="uid://cumvllbldvrhr" path="res://Balas/hit_box_bala.tscn" id="2_hhvbg"]
+[ext_resource type="PackedScene" uid="uid://bqqhxooxnc4dj" path="res://Assets/Models/balabomba_mesh.glb" id="3_balabombaglb"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_becj5"]
-albedo_color = Color(0.85895306, 0.8738458, 0.9499765, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_u177a"]
-material = SubResource("StandardMaterial3D_becj5")
-
-[node name="bala" type="CharacterBody3D" unique_id=119098857]
+[node name="bala2" type="CharacterBody3D" unique_id=119098857]
 transform = Transform3D(3.105, 0, 0, 0, 3.105, 0, 0, 0, 3.105, 0, 0, 0)
 script = ExtResource("1_3c1us")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=205985906]
-mesh = SubResource("SphereMesh_u177a")
+[node name="MeshInstance3D" parent="." unique_id=205985906 instance=ExtResource("3_balabombaglb")]
 
 [node name="HitBoxBala" parent="." unique_id=948943549 instance=ExtResource("2_hhvbg")]
 transform = Transform3D(1.305, 0, 0, 0, 1.305, 0, 0, 0, 1.305, 0, 0, 0)

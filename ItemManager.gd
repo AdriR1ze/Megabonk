@@ -39,13 +39,13 @@ func aplicar_items() -> void:
 			_set_stats(item)
 
 func _reset_stats() -> void:
-	PlayerStats.move_speed = 0
-	PlayerStats.defense = 0
-	PlayerStats.evasion = 0
-	PlayerStats.atq_speed = 0
-	PlayerStats.atack = 0
-	PlayerStats.crit_chance = 0
-	PlayerStats.xp_multiplicator = 0
+	PlayerStats.move_speed = 1.0
+	PlayerStats.defense = 1.0
+	PlayerStats.evasion = 0.0
+	PlayerStats.atq_speed = 1.0
+	PlayerStats.atack = 1.0
+	PlayerStats.crit_chance = 0.0
+	PlayerStats.xp_multiplicator = 1.0
 
 func _set_stats(item) -> void:
 	PlayerStats.move_speed += item.move_speed

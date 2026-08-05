@@ -5,6 +5,13 @@
 [ext_resource type="PackedScene" uid="uid://bduic8v5785v6" path="res://MenuStats/filas/move_speed_stat_ui.tscn" id="2_g3e7n"]
 [ext_resource type="PackedScene" uid="uid://dl70tdykt8rql" path="res://MenuStats/filas/atq_speed_stat_ui.tscn" id="3_g3e7n"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel_bg"]
+bg_color = Color(0.08, 0.08, 0.12, 0.75)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
 [node name="Control" type="Control" unique_id=1374605852]
 process_mode = 3
 layout_mode = 3
@@ -16,53 +23,41 @@ grow_vertical = 2
 script = ExtResource("1_teeju")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1375479015]
-layout_mode = 0
-offset_right = 1151.0
-offset_bottom = 640.0
-color = Color(0.4509804, 0.4509804, 0.4509804, 0.23921569)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05, 0.05, 0.08, 0.65)
 
 [node name="ColorRect2" type="ColorRect" parent="." unique_id=933782369]
 layout_mode = 1
-anchors_preset = 6
+anchors_preset = 11
 anchor_left = 1.0
-anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -303.0
-offset_top = -322.0
-offset_bottom = 322.0
+anchor_bottom = 1.0
+offset_left = -300.0
 grow_horizontal = 0
 grow_vertical = 2
-color = Color(0.057996407, 0.057996325, 0.057996362, 0.23921569)
-
-[node name="Button" type="Button" parent="." unique_id=1384483534]
-layout_mode = 0
-offset_left = 292.0
-offset_top = 221.0
-offset_right = 574.0
-offset_bottom = 277.0
-text = "VOLVER AL JUEGO"
-
-[node name="Button2" type="Button" parent="." unique_id=1438906456]
-layout_mode = 0
-offset_left = 293.0
-offset_top = 325.0
-offset_right = 575.0
-offset_bottom = 381.0
-text = "SALIR"
+color = Color(0.057996407, 0.057996325, 0.057996362, 0.85)
 
 [node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1762405590]
 layout_mode = 1
-anchors_preset = 1
+anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -656.0
-offset_bottom = 654.0
+anchor_bottom = 1.0
+offset_left = -290.0
+offset_top = 20.0
+offset_right = -10.0
+offset_bottom = -20.0
 grow_horizontal = 0
+grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer" unique_id=2047682787]
 layout_mode = 2
-size_flags_horizontal = 10
+size_flags_horizontal = 3
 
 [node name="Fuerza" parent="ScrollContainer/VBoxContainer" unique_id=1644533386 instance=ExtResource("1_vdy7n")]
 layout_mode = 2
@@ -72,3 +67,79 @@ layout_mode = 2
 
 [node name="AtqSpeed" parent="ScrollContainer/VBoxContainer" unique_id=1785863848 instance=ExtResource("3_g3e7n")]
 layout_mode = 2
+
+[node name="ItemsPanel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 500.0
+offset_bottom = -120.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel_bg")
+
+[node name="MarginContainer" type="MarginContainer" parent="ItemsPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ItemsPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="ItemsPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Ítems Obtenidos"
+
+[node name="HSeparator" type="HSeparator" parent="ItemsPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ItemsPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ItemsList" type="VBoxContainer" parent="ItemsPanel/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="HSeparator2" type="HSeparator" parent="ItemsPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HoverDescriptionLabel" type="Label" parent="ItemsPanel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 1)
+theme_override_font_sizes/font_size = 13
+autowrap_mode = 3
+text = "Pasa el mouse sobre un ítem para ver su descripción"
+
+
+[node name="ButtonsContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = -90.0
+offset_right = 500.0
+offset_bottom = -30.0
+grow_vertical = 0
+theme_override_constants/separation = 20
+
+[node name="Button" type="Button" parent="ButtonsContainer" unique_id=1384483534]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 16
+text = "VOLVER AL JUEGO"
+
+[node name="Button2" type="Button" parent="ButtonsContainer" unique_id=1438906456]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 16
+text = "SALIR"

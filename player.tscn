@@ -1,20 +1,15 @@
 [gd_scene format=3 uid="uid://cf28t3clpsbee"]
 
 [ext_resource type="Script" uid="uid://calmkdd0xjr0n" path="res://player.gd" id="1_4flbx"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lgngo"]
-albedo_color = Color(0.44302565, 0.50795174, 0.38014427, 1)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_u177a"]
-material = SubResource("StandardMaterial3D_lgngo")
+[ext_resource type="Script" uid="uid://b7dr08w7510jn" path="res://health_component.gd" id="2_health"]
+[ext_resource type="PackedScene" uid="uid://bhgfg24wq37yc" path="res://Assets/Models/player.glb" id="3_playerglb"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u177a"]
 
 [node name="Player" type="CharacterBody3D" unique_id=218347238]
 script = ExtResource("1_4flbx")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1097698566]
-mesh = SubResource("CapsuleMesh_u177a")
+[node name="MeshInstance3D" parent="." unique_id=1097698566 instance=ExtResource("3_playerglb")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=425645651]
 shape = SubResource("CapsuleShape3D_u177a")
@@ -22,8 +17,12 @@ shape = SubResource("CapsuleShape3D_u177a")
 [node name="pivot" type="Node3D" parent="." unique_id=1660800282]
 
 [node name="Camera3D" type="Camera3D" parent="pivot" unique_id=2032213160]
-transform = Transform3D(1, 0, 0, 0, 0.9226294, 0.3856877, 0, -0.3856877, 0.9226294, 0, 5.7093086, 6.946498)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
 far = 500.0
 
 [node name="SpawnPoint" type="Marker3D" parent="." unique_id=330301758]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21582174, 0)
+
+[node name="HealthComponent" type="Node" parent="." unique_id=981273465]
+script = ExtResource("2_health")
+max_health = 100.0

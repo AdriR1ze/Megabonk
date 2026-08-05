@@ -6,7 +6,7 @@
 script = ExtResource("1_e82ny")
 display_name = "Zapatilla"
 description = "Estas zapas estan guchi"
-move_speed = 0.1
-evasion = 5.0
-atq_speed = 0.5
+move_speed = 0.15
+evasion = 0.05
+atq_speed = 0.05
 metadata/_custom_type_script = "uid://dgj8vsixewv00"

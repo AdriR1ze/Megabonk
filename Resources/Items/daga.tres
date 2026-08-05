@@ -7,5 +7,5 @@ script = ExtResource("1_5343l")
 id = 2
 display_name = "Daga"
 description = "Daga full daño"
-atack = 5.0
+atack = 0.2
 metadata/_custom_type_script = "uid://dgj8vsixewv00"

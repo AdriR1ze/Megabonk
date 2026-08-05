@@ -1,12 +1,13 @@
 extends CharacterBody3D
 
 
-@export var SPEED = 3.0
+@export var SPEED = 35.0
 @onready var direccion : Vector3
-var player_atack : float
+var player_atack : float = 1.0
 var damage : float = 10.0
 func _ready() -> void:
-	
+	if direccion != Vector3.ZERO:
+		look_at(global_position + direccion)
 	await get_tree().create_timer(5.0).timeout
 	queue_free()
 	

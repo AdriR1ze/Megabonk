@@ -60,6 +60,7 @@ func disparar():
 	bullet.global_position = player.spawnpoint.global_position
 	bullet.global_position = player.spawnpoint.global_position + direccion * 1.2
 	bullet.direccion = direccion
+	bullet.damage = data.damage
 	bullet.player_atack = PlayerStats.atack
 
 	$Timer.start()

@@ -2,12 +2,11 @@
 
 [ext_resource type="Script" uid="uid://bninccud28o" path="res://Armas/pistola.gd" id="1_1oi2b"]
 [ext_resource type="PackedScene" uid="uid://dr70px16wia7x" path="res://Balas/balanormal.tscn" id="2_vfjji"]
+[ext_resource type="PackedScene" uid="uid://dk2ufpb0poclh" path="res://Assets/Models/pistola.glb" id="3_pistolaglb"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_u177a"]
 height = 0.001
 radius = 7.0234375
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_hlqc1"]
 
 [node name="AreaDeArma" type="Area3D" unique_id=1699589347]
 collision_layer = 32768
@@ -22,9 +21,8 @@ shape = SubResource("CylinderShape3D_u177a")
 wait_time = 0.401
 autostart = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=833225215]
+[node name="MeshInstance3D" parent="." unique_id=833225215 instance=ExtResource("3_pistolaglb")]
 transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, -2.349905, 1.3394594, 1.5402956)
-mesh = SubResource("CapsuleMesh_hlqc1")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
