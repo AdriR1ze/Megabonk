@@ -26,7 +26,10 @@ func _on_hit_box_bala_body_entered(body):
 func explotar():
 	for body in $HitBoxBala.get_overlapping_bodies():
 		if body.is_in_group("enemy"):
-			body.take_damage(damage * PlayerStats.atack)
+			var is_crit = randf() < PlayerStats.crit_chance
+			var final_damage = damage * player_atack * (PlayerStats.crit_multiplier if is_crit else 1.0)
+			if body.has_method("take_damage"):
+				body.take_damage(final_damage, is_crit)
 		
 
 	queue_free()

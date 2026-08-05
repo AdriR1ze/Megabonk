@@ -1,86 +1,71 @@
 extends Node
 
-
 signal weapons_changed
 
 var player : Node3D
 var weapons : Array = []
 const MAX_WEAPONS = 3
+
 @onready var disponibles = ArmaDB.get_all_armas()
+
 func _ready():
-#	PlayerStats.level_up.connect(level_up)
+	# Escuchar EventBus para reagregar armas si el player muere/reinicia
 	await get_tree().physics_frame
-	var random_number = randi_range(0,ArmaDB.get_all_armas().size() - 1)
-	add_weapon(ArmaDB.get_arma(random_number))
+	var random_id = randi() % max(1, ArmaDB.get_all_armas().size())
+	add_weapon(ArmaDB.get_arma(random_id))
 
-#		upgrade_weapon()
-
-func add_weapon(Arma):
-	print("ARMAAAAAA",Arma)
-	print("Entró a add_weapon")
-	print("Todas las armas son: ", ArmaDB.get_all_armas())
-	disponibles.clear()
-
-	for weapon in ArmaDB.get_all_armas():
-		var tiene = false
-
-		for a in weapons:
-			if a.data.id == weapon.id:
-				tiene = true
-				break
-
-		if !tiene:
-			disponibles.append(weapon)
-	print("Disponibles:", disponibles.size())
-	
-	var nueva 
-
-	for ag in disponibles:
-		if ag == Arma:
-			nueva = Arma
-	if !nueva:
-		upgrade_weapon(Arma)
-		print("UPGRADEANDOOOOOOOO")
+func add_weapon(arma: WeaponData) -> void:
+	if arma == null:
+		push_error("WeaponManager: add_weapon recibió null.")
 		return
-	print("Arma elegida:", nueva.weapon_name)
 
+	_refresh_disponibles()
 
-	var instancia = nueva.scene.instantiate()
+	# Si ya la tenemos, mejorarla
+	var ya_tenemos = false
+	for w in weapons:
+		if is_instance_valid(w) and w.data.id == arma.id:
+			ya_tenemos = true
+			break
 
-	instancia.data = nueva.duplicate(true)
+	if ya_tenemos or not disponibles.any(func(d): return d.id == arma.id):
+		upgrade_weapon(arma)
+		return
+
+	var instancia = arma.scene.instantiate()
+	instancia.data = arma.duplicate(true)
 	instancia.player = player
-
-	print("---------------")
-	print("Arma:", instancia.name)	
-	print("Padre:", get_parent().name)
-	print("Player:", player)
-	print("Scene:", nueva.scene)
-	print("Data:", instancia.data.weapon_name)
-
 	player.add_child(instancia)
 	instancia.position = Vector3.ZERO
-	print("Ahora el padre es:", instancia.get_parent())
-	print("---------------")
-
 	weapons.append(instancia)
 
-	print("Total armas:", weapons.size())
+	EventBus.weapon_unlocked.emit(arma)
 	weapons_changed.emit()
 
-func upgrade_weapon(Arma):
+func upgrade_weapon(arma: WeaponData) -> void:
 	if weapons.is_empty():
 		return
-
-	# Buscar la instancia que tiene el mismo id que Arma y subir su .data
 	for instancia in weapons:
-		if is_instance_valid(instancia) and instancia.data.id == Arma.id:
-			instancia.data.upgrade()
-			print("Arma mejorada: ", instancia.data.weapon_name, " -> Nivel ", instancia.data.level)
+		if is_instance_valid(instancia) and (instancia.data.id == arma.id or (arma and instancia.data.weapon_name == arma.weapon_name)):
+			if instancia.has_method("upgrade"):
+				instancia.upgrade()
+			else:
+				instancia.data.upgrade()
+			EventBus.weapon_upgraded.emit(instancia.data)
 			weapons_changed.emit()
 			return
-
-	# Si no se encontró por id, mejorar la primera arma disponible
+	# Fallback: mejorar la primera si no se encontró coincidencia
 	if is_instance_valid(weapons[0]):
-		weapons[0].data.upgrade()
-		print("Arma mejorada (fallback): ", weapons[0].data.weapon_name)
+		if weapons[0].has_method("upgrade"):
+			weapons[0].upgrade()
+		else:
+			weapons[0].data.upgrade()
+		EventBus.weapon_upgraded.emit(weapons[0].data)
 		weapons_changed.emit()
+
+func _refresh_disponibles() -> void:
+	disponibles.clear()
+	for weapon in ArmaDB.get_all_armas():
+		var tiene = weapons.any(func(w): return is_instance_valid(w) and w.data.id == weapon.id)
+		if not tiene:
+			disponibles.append(weapon)

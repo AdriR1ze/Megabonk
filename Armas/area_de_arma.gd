@@ -22,7 +22,9 @@ func actualizar_stats():
 	var shape = $CollisionShape3D.shape
 	if shape is SphereShape3D:
 		shape.radius = data.rango
-	$Timer.wait_time = cooldown / PlayerStats.atq_speed
+	elif shape is CylinderShape3D:
+		shape.radius = data.rango
+	$Timer.wait_time = max(0.05, cooldown / PlayerStats.atq_speed)
 
 
 func _on_body_entered(body: Node3D) -> void:

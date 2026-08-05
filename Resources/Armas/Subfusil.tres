@@ -7,7 +7,6 @@
 script = ExtResource("1_wstdk")
 weapon_name = "Subfusil"
 scene = ExtResource("1_puju1")
-id = 2
 damage = 7.0
 cooldown = 0.35
 rango = 12.0

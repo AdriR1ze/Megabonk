@@ -24,11 +24,17 @@ func get_all_armas() -> Array:
 func get_all_armas_no_usadas() -> Array:
 	var armas_elegibles = []
 	for a in armas.values():
-		if WeaponManager.disponibles.has(a):
-			armas_elegibles.append([a, 0])
+		if a == null:
+			continue
+		var tiene = false
+		for w in WeaponManager.weapons:
+			if is_instance_valid(w) and (w.data.id == a.id or w.data.weapon_name == a.weapon_name):
+				tiene = true
+				break
+		
+		if tiene:
+			armas_elegibles.append([a, 1]) # 1 = Upgrade de arma equipada
 		else:
-			for w in WeaponManager.weapons:
-				if w.data.id == a.id:
-					armas_elegibles.append([a, 1])
-					break
+			armas_elegibles.append([a, 0]) # 0 = Nueva arma
+			
 	return armas_elegibles

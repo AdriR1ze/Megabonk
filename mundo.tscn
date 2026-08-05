@@ -210,10 +210,3 @@ shadow_enabled = true
 chest_scene = ExtResource("4_otwa2")
 cantidad = 12
 radio = 45.0
-
-[node name="EnemySpawner" parent="Spawners" unique_id=1635723863 instance=ExtResource("7_2hh7m")]
-max_enemies = 150
-spawn_interval = 3.5
-spawn_radius = 35.0
-spawn_on_start = 2
-amount_enemies = 1

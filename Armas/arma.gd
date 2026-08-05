@@ -39,8 +39,8 @@ func _process(delta):
 			if dir.length() > 0.01:
 				# Basis.looking_at en espacio local
 				var target_basis = Basis.looking_at(dir, Vector3.UP)
-				# Corregir los 90 grados en Y para nuestros modelos alineados a +X
-				target_basis = target_basis.rotated(Vector3.UP, deg_to_rad(-90.0))
+				# Corregir los 90 grados en Y para nuestros modelos (sumados 180 grados adicionales)
+				target_basis = target_basis.rotated(Vector3.UP, deg_to_rad(90.0))
 				
 				# Interpolar suavemente conservando la escala
 				var current_basis = mesh_node.transform.basis.orthonormalized()
@@ -48,17 +48,20 @@ func _process(delta):
 				var scale_vec = mesh_node.transform.basis.get_scale()
 				mesh_node.transform.basis = slerped_basis.scaled(scale_vec)
 	else:
-		# Si no hay enemigos, volver suavemente a la orientacion original del arma (Basis.IDENTITY)
+		# Si no hay enemigos, volver suavemente a la orientacion original rotada 180 grados
+		var target_idle = Basis.IDENTITY.rotated(Vector3.UP, deg_to_rad(180.0))
 		var current_basis = mesh_node.transform.basis.orthonormalized()
-		var slerped_basis = current_basis.slerp(Basis.IDENTITY, delta * 6.0)
+		var slerped_basis = current_basis.slerp(target_idle, delta * 6.0)
 		var scale_vec = mesh_node.transform.basis.get_scale()
 		mesh_node.transform.basis = slerped_basis.scaled(scale_vec)
 
 func actualizar_stats():
-	$Timer.wait_time = data.cooldown / PlayerStats.atq_speed
+	$Timer.wait_time = max(0.05, data.cooldown / PlayerStats.atq_speed)
 
 	var shape = $CollisionShape3D.shape
 	if shape is SphereShape3D:
+		shape.radius = data.rango
+	elif shape is CylinderShape3D:
 		shape.radius = data.rango
 
 

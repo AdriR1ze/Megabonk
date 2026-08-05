@@ -17,12 +17,19 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-ItemDB="*uid://yv3pvsmfrj7"
-ItemManager="*uid://b8wjjgj64wk7t"
+EventBus="*res://EventBus.gd"
+SaveManager="*res://SaveManager.gd"
+AudioManager="*res://AudioManager.gd"
 GameManager="*uid://bgrvv7t6d2vrw"
 PlayerStats="*uid://bh3spdwmf7k1k"
+WaveManager="*res://WaveManager.gd"
 WeaponManager="*uid://cb5gxrl4euti4"
+UpgradeManager="*res://UpgradeManager.gd"
+EnemyManager="*res://EnemyManager.gd"
+UIManager="*res://UIManager.gd"
 ArmaDB="*uid://dmoovsmofy021"
+ItemDB="*uid://yv3pvsmfrj7"
+ItemManager="*uid://b8wjjgj64wk7t"
 
 [display]
 
