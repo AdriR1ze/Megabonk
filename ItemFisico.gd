@@ -50,6 +50,7 @@ func _try_open_chest() -> void:
 
 	var item: Item = items.pick_random()
 	ItemManager.agregar_item(item.id)
+	EventBus.item_picked.emit()
 	print("Conseguiste: ", item.display_name)
 
 	if prompt_label:

@@ -18,4 +18,3 @@ shape = SubResource("CapsuleShape3D_tdeca")
 
 [node name="HealthComponent" type="Node" parent="." unique_id=122821583]
 script = ExtResource("2_a5tj2")
-max_health = 50.0

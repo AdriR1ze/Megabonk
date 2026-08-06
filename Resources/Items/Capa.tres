@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://dcxig8b6y0rrx"]
+
+[ext_resource type="Script" uid="uid://dgj8vsixewv00" path="res://item.gd" id="1_9plwq"]
+[ext_resource type="Texture2D" uid="uid://d3iwt2b5olfek" path="res://Assets/Sprites/Capa.svg" id="9_tex"]
+
+[resource]
+script = ExtResource("1_9plwq")
+id = 7
+display_name = "Capa"
+description = "Capa de superhéroe, pero sin capucha"
+texture_sprite = ExtResource("9_tex")
+move_speed = 0.05
+evasion = 0.1
+metadata/_custom_type_script = "uid://dgj8vsixewv00"

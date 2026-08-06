@@ -2,12 +2,14 @@
 
 [ext_resource type="Script" uid="uid://bvufqb6f7hqio" path="res://WeaponData.gd" id="1_cev2q"]
 [ext_resource type="PackedScene" uid="uid://bm0mn0l8etrxu" path="res://Armas/area_de_pistola.tscn" id="1_mn4qw"]
+[ext_resource type="Texture2D" uid="uid://kv3gnl70cdhi" path="res://Assets/Sprites/Pistola.svg" id="9_tex"]
 
 [resource]
 script = ExtResource("1_cev2q")
 weapon_name = "Pistola"
-scene = ExtResource("1_mn4qw")
 id = 1
+texture_sprite = ExtResource("9_tex")
+scene = ExtResource("1_mn4qw")
 damage = 15.0
 cooldown = 0.85
 rango = 15.0

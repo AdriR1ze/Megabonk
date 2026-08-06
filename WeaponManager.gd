@@ -9,8 +9,14 @@ const MAX_WEAPONS = 3
 @onready var disponibles = ArmaDB.get_all_armas()
 
 func _ready():
-	# Escuchar EventBus para reagregar armas si el player muere/reinicia
-	await get_tree().physics_frame
+	# Cada run (incluido reintentar) limpia y da el arma inicial.
+	EventBus.run_started.connect(_on_run_started)
+
+func _on_run_started() -> void:
+	for w in weapons:
+		if is_instance_valid(w):
+			w.queue_free()
+	weapons.clear()
 	var random_id = randi() % max(1, ArmaDB.get_all_armas().size())
 	add_weapon(ArmaDB.get_arma(random_id))
 
@@ -20,6 +26,11 @@ func add_weapon(arma: WeaponData) -> void:
 		return
 
 	_refresh_disponibles()
+
+	# Límite de armas: con el máximo ya equipado, solo se puede mejorar
+	if weapons.size() >= MAX_WEAPONS:
+		upgrade_weapon(arma)
+		return
 
 	# Si ya la tenemos, mejorarla
 	var ya_tenemos = false
@@ -33,11 +44,15 @@ func add_weapon(arma: WeaponData) -> void:
 		return
 
 	var instancia = arma.scene.instantiate()
+	if instancia == null:
+		push_warning("WeaponManager: no se pudo instanciar el arma ", arma.weapon_name)
+		return
 	instancia.data = arma.duplicate(true)
 	instancia.player = player
 	player.add_child(instancia)
 	instancia.position = Vector3.ZERO
 	weapons.append(instancia)
+	SaveManager.mark_weapon_discovered(arma.id)
 
 	EventBus.weapon_unlocked.emit(arma)
 	weapons_changed.emit()

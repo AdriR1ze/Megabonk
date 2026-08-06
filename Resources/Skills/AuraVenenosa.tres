@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="AuraVenenosa" format=3 uid="uid://3849pn0430mcc"]
+
+[ext_resource type="Script" uid="uid://2z58quz664o4h" path="res://Skills/aura_venenosa.gd" id="1_av1"]
+
+[resource]
+script = ExtResource("1_av1")
+skill_name = "Aura Venenosa"
+description = "Un veneno corrosivo que daña a los enemigos cercanos."
+damage = 6.0
+radius = 3.5
+tick_interval = 0.7
+color = Color(0.4, 0.8, 0.2, 0.35)
+metadata/_custom_type_script = "uid://2z58quz664o4h"

@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://r5ppa3y8j0td"]
+
+[ext_resource type="Script" uid="uid://c0dswg2k4vjyw" path="res://Balas/bala.gd" id="1_frc1"]
+[ext_resource type="PackedScene" uid="uid://cumvllbldvrhr" path="res://Balas/hit_box_bala.tscn" id="2_frc2"]
+[ext_resource type="PackedScene" path="res://Assets/Models/bala_franco_mesh.glb" id="3_frc3"]
+
+[node name="bala" type="CharacterBody3D" unique_id=119098857]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
+script = ExtResource("1_frc1")
+SPEED = 95.0
+
+[node name="MeshInstance3D" parent="." unique_id=205985906 instance=ExtResource("3_frc3")]
+
+[node name="HitBoxBala" parent="." unique_id=948943549 instance=ExtResource("2_frc2")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
+
+[connection signal="body_entered" from="HitBoxBala" to="." method="_on_hit_box_bala_body_entered"]

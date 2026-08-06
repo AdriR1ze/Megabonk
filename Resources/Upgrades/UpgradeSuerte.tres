@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="UpgradeData" format=3]
+
+[ext_resource type="Script" path="res://UpgradeData.gd" id="1_ud"]
+
+[ext_resource type="Texture2D" path="res://Assets/Sprites/Corona.svg" id="9_tex"]
+
+[resource]
+script = ExtResource("1_ud")
+upgrade_name = "Suerte"
+description = "+15% Probabilidad de monedas"
+icon = ExtResource("9_tex")
+type = 0
+rarity = 2
+stat_changes = {
+"luck": 0.15
+}
+weapon_id = -1
+synergy_requires_weapon_ids = Array[int]([])

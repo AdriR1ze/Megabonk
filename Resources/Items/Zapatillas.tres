@@ -1,11 +1,13 @@
 [gd_resource type="Resource" script_class="Item" format=3 uid="uid://bjcr13qkm54py"]
 
 [ext_resource type="Script" uid="uid://dgj8vsixewv00" path="res://item.gd" id="1_e82ny"]
+[ext_resource type="Texture2D" uid="uid://b4jsajr0axfqq" path="res://Assets/Sprites/Zapatillas.svg" id="9_tex"]
 
 [resource]
 script = ExtResource("1_e82ny")
 display_name = "Zapatilla"
 description = "Estas zapas estan guchi"
+texture_sprite = ExtResource("9_tex")
 move_speed = 0.15
 evasion = 0.05
 atq_speed = 0.05

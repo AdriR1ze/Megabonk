@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://hdkijj6isqej"]
+
+[ext_resource type="Script" uid="uid://dgj8vsixewv00" path="res://item.gd" id="1_r9d7p"]
+[ext_resource type="Texture2D" uid="uid://bd4pjc8f2pbsk" path="res://Assets/Sprites/Mate.svg" id="9_tex"]
+
+[resource]
+script = ExtResource("1_r9d7p")
+id = 22
+display_name = "Mate"
+description = "Un buen mate y nada te para"
+texture_sprite = ExtResource("9_tex")
+atack = 0.1
+atq_speed = 0.1
+metadata/_custom_type_script = "uid://dgj8vsixewv00"

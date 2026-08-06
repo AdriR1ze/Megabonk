@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://srq8w5ryu4tn"]
+
+[ext_resource type="Script" uid="uid://c0dswg2k4vjyw" path="res://Balas/bala.gd" id="1_pel1"]
+[ext_resource type="PackedScene" uid="uid://cumvllbldvrhr" path="res://Balas/hit_box_bala.tscn" id="2_pel2"]
+[ext_resource type="PackedScene" path="res://Assets/Models/bala_pellet_mesh.glb" id="3_pel3"]
+
+[node name="bala" type="CharacterBody3D" unique_id=119098857]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+script = ExtResource("1_pel1")
+SPEED = 45.0
+
+[node name="MeshInstance3D" parent="." unique_id=205985906 instance=ExtResource("3_pel3")]
+
+[node name="HitBoxBala" parent="." unique_id=948943549 instance=ExtResource("2_pel2")]
+
+[connection signal="body_entered" from="HitBoxBala" to="." method="_on_hit_box_bala_body_entered"]

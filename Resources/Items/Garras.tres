@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://bj07ldvclruea"]
+
+[ext_resource type="Script" uid="uid://dgj8vsixewv00" path="res://item.gd" id="1_v2m7h"]
+
+[ext_resource type="Texture2D" path="res://Assets/Sprites/Garras.svg" id="9_tex"]
+
+[resource]
+script = ExtResource("1_v2m7h")
+id = 19
+display_name = "Garras"
+description = "Garras de tigre, rawr"
+evasion = 0.05
+atq_speed = 0.2
+texture_sprite = ExtResource("9_tex")
+
+metadata/_custom_type_script = "uid://dgj8vsixewv00"

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="UpgradeData" format=3]
+
+[ext_resource type="Script" path="res://UpgradeData.gd" id="1_ud"]
+
+[ext_resource type="Texture2D" path="res://Assets/Sprites/DanoExtra.svg" id="9_tex"]
+
+[resource]
+script = ExtResource("1_ud")
+upgrade_name = "Daño Extra"
+description = "+10% de causar +10 de daño por disparo"
+icon = ExtResource("9_tex")
+type = 0
+rarity = 2
+stat_changes = {
+"dano_extra_chance": 0.1,
+"dano_extra_amount": 10.0
+}
+weapon_id = -1
+synergy_requires_weapon_ids = Array[int]([])

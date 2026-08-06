@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://dimxgxe77y7rv"]
+
+[ext_resource type="Script" uid="uid://dgj8vsixewv00" path="res://item.gd" id="1_p3r6m"]
+
+[resource]
+script = ExtResource("1_p3r6m")
+id = 15
+display_name = "Escudo"
+description = "Escudo del abuelo, indestructible"
+defense = 0.5
+metadata/_custom_type_script = "uid://dgj8vsixewv00"

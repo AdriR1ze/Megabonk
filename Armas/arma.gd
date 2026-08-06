@@ -60,9 +60,9 @@ func actualizar_stats():
 
 	var shape = $CollisionShape3D.shape
 	if shape is SphereShape3D:
-		shape.radius = data.rango
+		shape.radius = data.rango * PlayerStats.range_multiplier
 	elif shape is CylinderShape3D:
-		shape.radius = data.rango
+		shape.radius = data.rango * PlayerStats.range_multiplier
 
 
 func _on_body_entered(body):
@@ -108,6 +108,7 @@ func attack():
 
 	if mas_cercano != null:
 		perform_attack(mas_cercano)
+		EventBus.weapon_fired.emit()
 
 
 func perform_attack(target):
@@ -116,6 +117,9 @@ func perform_attack(target):
 
 func _on_stats_change():
 	$Timer.wait_time = data.cooldown / PlayerStats.atq_speed
+	var shape = $CollisionShape3D.shape
+	if shape is SphereShape3D or shape is CylinderShape3D:
+		shape.radius = data.rango * PlayerStats.range_multiplier
 
 
 func upgrade():

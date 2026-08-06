@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://c7y1ncwyxbi5k"]
+
+[ext_resource type="Script" uid="uid://dgj8vsixewv00" path="res://item.gd" id="1_g9n3z"]
+[ext_resource type="Texture2D" uid="uid://quec7r1mkaeq" path="res://Assets/Sprites/Cadena.svg" id="9_tex"]
+
+[resource]
+script = ExtResource("1_g9n3z")
+id = 18
+display_name = "Cadena"
+description = "Cadena de moto, para repartir"
+texture_sprite = ExtResource("9_tex")
+atq_speed = 0.15
+metadata/_custom_type_script = "uid://dgj8vsixewv00"

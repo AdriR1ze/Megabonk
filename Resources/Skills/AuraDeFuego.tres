@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="AuraDeFuego" format=3 uid="uid://gi9fpnsd6vsd"]
+
+[ext_resource type="Script" uid="uid://2kuo7h81shkwy" path="res://Skills/aura_de_fuego.gd" id="1_af1"]
+
+[resource]
+script = ExtResource("1_af1")
+skill_name = "Aura de Fuego"
+description = "Una llama ardiente quema a los enemigos cercanos."
+damage = 8.0
+radius = 4.5
+tick_interval = 0.4
+color = Color(1, 0.45, 0.1, 0.35)
+metadata/_custom_type_script = "uid://2kuo7h81shkwy"

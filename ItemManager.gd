@@ -10,13 +10,24 @@ func agregar_item(id) -> void:
 	if id == null:
 		return
 	items_player.append(id)
+	SaveManager.mark_item_discovered(id)
 	aplicar_item(id)
 
 func remover_item(id) -> void:
 	if id == null:
 		return
+	var item: Item = ItemDB.get_item(id)
 	items_player.erase(id)
+	if item and item.skill and is_instance_valid(player):
+		item.skill.remove(player)
 	aplicar_items()
+
+func limpiar_items() -> void:
+	for id in items_player:
+		var item = ItemDB.get_item(id)
+		if item and item.skill and is_instance_valid(player):
+			item.skill.remove(player)
+	items_player.clear()
 
 func aplicar_item(id) -> void:
 	var item: Item = ItemDB.get_item(id)
@@ -25,9 +36,11 @@ func aplicar_item(id) -> void:
 		return
 	if item.stats == true:
 		_set_stats(item)
+	if item.skill and is_instance_valid(player):
+		item.skill.apply(player)
 
 func aplicar_items() -> void:
-	if player == null:
+	if not is_instance_valid(player):
 		push_error("ItemManager: 'player' no está asignado")
 		return
 	_reset_stats()
@@ -46,6 +59,8 @@ func _reset_stats() -> void:
 	PlayerStats.atack = 1.0
 	PlayerStats.crit_chance = 0.0
 	PlayerStats.xp_multiplicator = 1.0
+	PlayerStats.dano_extra_chance = 0.0
+	PlayerStats.dano_extra_amount = 0.0
 
 func _set_stats(item) -> void:
 	PlayerStats.move_speed += item.move_speed

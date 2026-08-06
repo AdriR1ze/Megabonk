@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://0n4mux5jr01t"]
+
+[ext_resource type="Script" uid="uid://dgj8vsixewv00" path="res://item.gd" id="1_7kr2f"]
+[ext_resource type="Texture2D" uid="uid://n5p8xtofrunr" path="res://Assets/Sprites/CascoVikingo.svg" id="9_tex"]
+
+[resource]
+script = ExtResource("1_7kr2f")
+id = 6
+display_name = "Casco Vikingo"
+description = "Casco de vikingo, bien cheta"
+texture_sprite = ExtResource("9_tex")
+defense = 0.3
+evasion = -0.05
+metadata/_custom_type_script = "uid://dgj8vsixewv00"

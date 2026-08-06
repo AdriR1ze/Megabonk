@@ -17,11 +17,14 @@ var pierce_bonus : int = 0       # Pierce extra sobre el base del arma
 var range_multiplier : float = 1.0
 var area_multiplier : float = 1.0
 var luck : float = 1.0           # Afecta rarezas y drop de monedas
+var dano_extra_chance : float = 0.0  # Probabilidad de daño extra al disparar
+var dano_extra_amount : float = 0.0  # Cantidad de daño extra al disparar
 
 # --- Experiencia y Nivel ---
 var level : int = 1
 var xp : int = 0
 var xp_needed : int = 5
+var pending_levels : int = 0  # Niveles ganados que aún no eligieron mejora
 
 # --- Señales ---
 signal level_up
@@ -35,11 +38,14 @@ func add_xp(amount: int) -> void:
 		xp -= xp_needed
 		level += 1
 		xp_needed = int(xp_needed * 1.4) + 2
+		pending_levels += 1
 		level_up.emit()
-		UpgradeManager.offer_upgrades()
 
 	EventBus.player_xp_changed.emit(xp, xp_needed, level)
 	xp_changed.emit()
+
+	if pending_levels > 0:
+		UpgradeManager.offer_upgrades()
 
 func reset_for_new_run() -> void:
 	max_health = 100.0
@@ -57,6 +63,13 @@ func reset_for_new_run() -> void:
 	range_multiplier = 1.0
 	area_multiplier = 1.0
 	luck = 1.0
+	dano_extra_chance = 0.0
+	dano_extra_amount = 0.0
 	level = 1
 	xp = 0
 	xp_needed = 5
+	pending_levels = 0
+	SaveManager.apply_meta_bonuses()
+
+func _ready() -> void:
+	SaveManager.apply_meta_bonuses()

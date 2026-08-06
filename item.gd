@@ -6,6 +6,8 @@ class_name Item
 @export var description : String
 @export var texture_sprite : Texture2D
 
+@export var skill: Skill
+
 @export var stats : bool = true
 @export var move_speed : float
 @export var defense : float

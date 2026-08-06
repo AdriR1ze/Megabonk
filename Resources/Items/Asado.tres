@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://uac6vxa0sdcc"]
+
+[ext_resource type="Script" uid="uid://dgj8vsixewv00" path="res://item.gd" id="1_k6b3n"]
+[ext_resource type="Texture2D" uid="uid://c51knjilhuhqb" path="res://Assets/Sprites/Asado.svg" id="9_tex"]
+
+[resource]
+script = ExtResource("1_k6b3n")
+id = 23
+display_name = "Asado"
+description = "Asado del domingo, full proteina"
+texture_sprite = ExtResource("9_tex")
+defense = 0.2
+atack = 0.3
+metadata/_custom_type_script = "uid://dgj8vsixewv00"

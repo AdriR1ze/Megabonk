@@ -23,6 +23,7 @@ func get_all_armas() -> Array:
 	
 func get_all_armas_no_usadas() -> Array:
 	var armas_elegibles = []
+	var max_alcanzado = WeaponManager.weapons.size() >= WeaponManager.MAX_WEAPONS
 	for a in armas.values():
 		if a == null:
 			continue
@@ -31,6 +32,10 @@ func get_all_armas_no_usadas() -> Array:
 			if is_instance_valid(w) and (w.data.id == a.id or w.data.weapon_name == a.weapon_name):
 				tiene = true
 				break
+		
+		# Si ya hay el máximo de armas equipadas, no ofrecer armas nuevas
+		if max_alcanzado and not tiene:
+			continue
 		
 		if tiene:
 			armas_elegibles.append([a, 1]) # 1 = Upgrade de arma equipada

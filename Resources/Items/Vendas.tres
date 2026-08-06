@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://dqkidt1k263g8"]
+
+[ext_resource type="Script" uid="uid://dgj8vsixewv00" path="res://item.gd" id="1_j5d1x"]
+
+[ext_resource type="Texture2D" path="res://Assets/Sprites/Vendas.svg" id="9_tex"]
+
+[resource]
+script = ExtResource("1_j5d1x")
+id = 16
+display_name = "Vendas"
+description = "Vendas de boxeador, ojo morado incluido"
+defense = 0.1
+evasion = 0.05
+texture_sprite = ExtResource("9_tex")
+
+metadata/_custom_type_script = "uid://dgj8vsixewv00"

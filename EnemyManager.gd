@@ -2,6 +2,7 @@ extends Node
 # Autoload: maneja el pool de enemigos y los spawns según la oleada activa del WaveManager.
 
 @export var default_enemy_scene : PackedScene
+@export var boss_scene : PackedScene
 @export var max_enemies : int = 200
 @export var min_spawn_dist : float = 22.0
 @export var max_spawn_dist : float = 45.0
@@ -9,15 +10,29 @@ extends Node
 var pool : Array = []
 var spawn_timer : float = 0.0
 var super_wave_fired_for : int = -1
+var boss_spawned_for_wave : int = -1
 
 func _ready() -> void:
-	# Si no se asignó desde el editor, cargar la escena de enemigo por defecto
 	if default_enemy_scene == null:
 		default_enemy_scene = load("res://enemigo.tscn")
-	await get_tree().physics_frame
-	_build_pool()
+	if boss_scene == null:
+		boss_scene = load("res://boss.tscn")
+
+	EventBus.run_started.connect(_on_run_started)
 	WaveManager.wave_started.connect(_on_wave_started)
-	# Spawn inicial
+
+func _on_run_started() -> void:
+	# El pool se construye cuando empieza la partida (la escena de mundo ya es current_scene),
+	# no en el arranque del juego, que ahora ocurre en el menú principal.
+	for e in pool:
+		if is_instance_valid(e):
+			e.queue_free()
+	pool.clear()
+	await get_tree().physics_frame
+	if get_tree().current_scene == null:
+		return
+	_build_pool()
+
 	for i in range(2):
 		spawn_enemy()
 
@@ -53,6 +68,32 @@ func _on_wave_started(wave_index: int, wave_data: WaveData) -> void:
 		for i in range(wave_data.super_wave_amount):
 			spawn_enemy()
 
+	# Spawn del Boss en la oleada de Élite o Boss (o cada 3 oleadas)
+	if (wave_data.wave_name.contains("BOSS") or wave_index >= 3) and boss_spawned_for_wave != wave_index:
+		boss_spawned_for_wave = wave_index
+		spawn_boss()
+
+func spawn_boss() -> void:
+	if boss_scene == null:
+		boss_scene = load("res://boss.tscn")
+	if boss_scene == null:
+		return
+
+	var root = get_tree().current_scene
+	var boss = boss_scene.instantiate()
+	root.add_child(boss)
+
+	var player = get_tree().get_first_node_in_group("player")
+	var center : Vector3 = player.global_position if is_instance_valid(player) else Vector3.ZERO
+
+	var angle = randf() * TAU
+	var pos = center + Vector3(cos(angle) * 30.0, 0.0, sin(angle) * 30.0)
+	pos.x = clamp(pos.x, -90.0, 90.0)
+	pos.z = clamp(pos.z, -90.0, 90.0)
+	pos.y = 0.0
+
+	boss.global_position = pos
+
 func spawn_enemy() -> void:
 	var enemy = _get_free_enemy()
 	if enemy == null:
@@ -71,9 +112,8 @@ func spawn_enemy() -> void:
 
 	enemy.global_position = pos
 
-	# Escalar vida según tiempo: sqrt para escalar rápido al inicio y luego suavizar
 	var minutes = WaveManager.get_minutes()
-	var health_mult = 1.0 + 0.45 * sqrt(minutes)
+	var health_mult = 1.0 + 0.2 * sqrt(minutes)
 
 	if enemy.has_method("reset_enemy"):
 		enemy.reset_enemy(health_mult)
@@ -84,6 +124,7 @@ func spawn_enemy() -> void:
 	EventBus.enemy_spawned.emit(enemy)
 
 func _get_free_enemy() -> Node:
+	pool = pool.filter(func(e): return is_instance_valid(e))
 	for e in pool:
 		if e.process_mode == Node.PROCESS_MODE_DISABLED:
 			return e

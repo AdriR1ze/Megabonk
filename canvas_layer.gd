@@ -1,7 +1,29 @@
 extends Control
 
+# Stats mostradas en el panel de pausa (nombre, propiedad de PlayerStats, formato).
+const STATS := [
+	{"name": "Vida Máxima", "prop": "max_health", "fmt": "%.0f"},
+	{"name": "Fuerza", "prop": "atack", "fmt": "x%.2f"},
+	{"name": "Vel. Movimiento", "prop": "move_speed", "fmt": "x%.2f"},
+	{"name": "Vel. Ataque", "prop": "atq_speed", "fmt": "x%.2f"},
+	{"name": "Armadura", "prop": "defense", "fmt": "%.1f"},
+	{"name": "Crítico", "prop": "crit_chance", "fmt": "%.0f%%", "mult": 100},
+	{"name": "Daño Crítico", "prop": "crit_multiplier", "fmt": "x%.1f"},
+	{"name": "Evasión", "prop": "evasion", "fmt": "%.0f%%", "mult": 100},
+	{"name": "Regeneración", "prop": "regen", "fmt": "%.1f/s"},
+	{"name": "XP Bonus", "prop": "xp_multiplicator", "fmt": "x%.2f"},
+	{"name": "Vel. Proyectiles", "prop": "projectile_speed", "fmt": "x%.2f"},
+	{"name": "Perforación Extra", "prop": "pierce_bonus", "fmt": "+%d"},
+	{"name": "Rango", "prop": "range_multiplier", "fmt": "x%.2f"},
+	{"name": "Área", "prop": "area_multiplier", "fmt": "x%.2f"},
+	{"name": "Suerte", "prop": "luck", "fmt": "x%.2f"},
+	{"name": "Daño Extra", "prop": "dano_extra_amount", "fmt": "+%.0f"},
+	{"name": "Prob. Daño Extra", "prop": "dano_extra_chance", "fmt": "%.0f%%", "mult": 100},
+]
+
 @onready var volver_btn: Button = $ButtonsContainer/Button
 @onready var salir_btn: Button = $ButtonsContainer/Button2
+@onready var menu_btn: Button = $ButtonsContainer/Button3
 @onready var items_list: VBoxContainer = $ItemsPanel/MarginContainer/VBoxContainer/ScrollContainer/ItemsList
 @onready var hover_desc_label: Label = $ItemsPanel/MarginContainer/VBoxContainer/HoverDescriptionLabel
 
@@ -13,6 +35,10 @@ func _ready() -> void:
 		volver_btn.pressed.connect(_on_volver_pressed)
 	if salir_btn:
 		salir_btn.pressed.connect(_on_salir_pressed)
+	if menu_btn:
+		menu_btn.pressed.connect(_on_menu_pressed)
+	_build_stats_list()
+	_on_stats_changed()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("menu"):
@@ -36,13 +62,55 @@ func _on_volver_pressed() -> void:
 func _on_salir_pressed() -> void:
 	get_tree().quit()
 
+func _on_menu_pressed() -> void:
+	get_tree().paused = false
+	GameManager.reset_run()
+	PlayerStats.reset_for_new_run()
+	ItemManager.limpiar_items()
+	get_tree().change_scene_to_file("res://main_menu.tscn")
+
+func _build_stats_list() -> void:
+	var list: VBoxContainer = $MenuPanel/VBoxContainer/ScrollContainer/VBoxContainer
+	for child in list.get_children():
+		child.queue_free()
+	for stat in STATS:
+		list.add_child(_make_stat_row(stat))
+
+func _make_stat_row(stat: Dictionary) -> Control:
+	var hbox := HBoxContainer.new()
+	hbox.custom_minimum_size = Vector2(0, 26)
+	hbox.set_meta("stat", stat)
+
+	var name_lbl := Label.new()
+	name_lbl.text = stat["name"]
+	name_lbl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	name_lbl.add_theme_font_size_override("font_size", 14)
+	name_lbl.add_theme_color_override("font_color", Color(0.9, 0.9, 0.9))
+	hbox.add_child(name_lbl)
+
+	var value_lbl := Label.new()
+	value_lbl.name = "ValorStat"
+	value_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	value_lbl.add_theme_font_size_override("font_size", 14)
+	value_lbl.add_theme_color_override("font_color", Color(1, 0.85, 0.35))
+	hbox.add_child(value_lbl)
+
+	return hbox
+
 func _on_stats_changed() -> void:
-	if has_node("ScrollContainer/VBoxContainer/Fuerza/ValorStat"):
-		$ScrollContainer/VBoxContainer/Fuerza/ValorStat.text = str(PlayerStats.atack)
-	if has_node("ScrollContainer/VBoxContainer/MoveSpeed/ValorStat"):
-		$ScrollContainer/VBoxContainer/MoveSpeed/ValorStat.text = str(PlayerStats.move_speed)
-	if has_node("ScrollContainer/VBoxContainer/AtqSpeed/ValorStat"):
-		$ScrollContainer/VBoxContainer/AtqSpeed/ValorStat.text = str(PlayerStats.atq_speed)
+	var list: VBoxContainer = $MenuPanel/VBoxContainer/ScrollContainer/VBoxContainer
+	for row in list.get_children():
+		if not row.has_meta("stat"):
+			continue
+		var stat: Dictionary = row.get_meta("stat")
+		var value_lbl: Label = row.get_node("ValorStat")
+		var mult: float = stat.get("mult", 1.0)
+		var raw = PlayerStats.get(stat["prop"])
+		var val = raw * mult
+		if (stat["fmt"] as String).contains("%d"):
+			value_lbl.text = stat["fmt"] % int(val)
+		else:
+			value_lbl.text = stat["fmt"] % val
 
 func _update_items_list() -> void:
 	if not items_list:

@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://0x6mfctjycpg"]
+
+[ext_resource type="Script" uid="uid://bvufqb6f7hqio" path="res://WeaponData.gd" id="1_cp1"]
+[ext_resource type="PackedScene" uid="uid://1bk814dr2zr4c" path="res://Armas/area_de_canon_plasma.tscn" id="1_cp2"]
+
+[ext_resource type="Texture2D" path="res://Assets/Sprites/CanonPlasma.svg" id="9_tex"]
+
+[resource]
+script = ExtResource("1_cp1")
+weapon_name = "Cañón de Plasma"
+scene = ExtResource("1_cp2")
+id = 6
+damage = 30.0
+cooldown = 1.9
+rango = 15.0
+projectile_speed = 15.0
+pierce = 4
+knockback = 6.0
+crit_chance = 0.1
+crit_multiplier = 1.8
+rarity = 2
+crecimiento_damage = 6.0
+crecimiento_rango = 1.0
+crecimiento_cooldown = 0.06
+crecimiento_pierce = 1
+texture_sprite = ExtResource("9_tex")
+
+metadata/_custom_type_script = "uid://bvufqb6f7hqio"

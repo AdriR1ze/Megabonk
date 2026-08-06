@@ -5,7 +5,11 @@
 [ext_resource type="Resource" uid="uid://dagjh27xjw7ye" path="res://Resources/Armas/LanzaCohete.tres" id="3_02grd"]
 [ext_resource type="Resource" uid="uid://xjwb6l3bpsgp" path="res://Resources/Armas/Pistola.tres" id="4_tlq27"]
 [ext_resource type="Resource" uid="uid://cnhtg58s22e0y" path="res://Resources/Armas/Subfusil.tres" id="5_fey4m"]
+[ext_resource type="Resource" uid="uid://1khqbst3l9zc" path="res://Resources/Armas/Escopeta.tres" id="6_ax9w3"]
+[ext_resource type="Resource" uid="uid://2h6jkcbc1fwgt" path="res://Resources/Armas/Francotirador.tres" id="7_by8q4"]
+[ext_resource type="Resource" uid="uid://3md7o2h7e1icf" path="res://Resources/Armas/Lanzallamas.tres" id="8_cz7r5"]
+[ext_resource type="Resource" uid="uid://22taqsrlieg0s" path="res://Resources/Armas/CanonPlasma.tres" id="9_dw6s6"]
 
 [node name="ArmaDb" type="Node" unique_id=1669003703]
 script = ExtResource("1_6ssgn")
-lista_armas = Array[ExtResource("2_w4xpu")]([ExtResource("3_02grd"), ExtResource("4_tlq27"), ExtResource("5_fey4m")])
+lista_armas = Array[ExtResource("2_w4xpu")]([ExtResource("3_02grd"), ExtResource("4_tlq27"), ExtResource("5_fey4m"), ExtResource("6_ax9w3"), ExtResource("7_by8q4"), ExtResource("8_cz7r5"), ExtResource("9_dw6s6")])

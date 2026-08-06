@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EscudoSkill" format=3]
+
+[ext_resource type="Script" path="res://Skills/escudo_skill.gd" id="1_esc"]
+
+[resource]
+script = ExtResource("1_esc")
+skill_name = "Escudo Absorbente"
+description = "Un escudo mágico que bloquea un golpe completo cada 10 segundos."
+cooldown = 10.0

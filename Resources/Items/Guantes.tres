@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://b7yhsv38a864x"]
+
+[ext_resource type="Script" uid="uid://dgj8vsixewv00" path="res://item.gd" id="1_z6t3d"]
+[ext_resource type="Texture2D" uid="uid://d1485xt1b7t6f" path="res://Assets/Sprites/Guantes.svg" id="9_tex"]
+
+[resource]
+script = ExtResource("1_z6t3d")
+id = 10
+display_name = "Guantes"
+description = "Guantazos full power"
+texture_sprite = ExtResource("9_tex")
+atack = 0.1
+atq_speed = 0.1
+metadata/_custom_type_script = "uid://dgj8vsixewv00"

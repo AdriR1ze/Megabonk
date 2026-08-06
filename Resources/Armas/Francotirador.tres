@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://gcgfwuk20r5h"]
+
+[ext_resource type="Script" uid="uid://bvufqb6f7hqio" path="res://WeaponData.gd" id="1_fr1"]
+[ext_resource type="PackedScene" uid="uid://mo75gzhhq61" path="res://Armas/area_de_francotirador.tscn" id="1_fr2"]
+
+[ext_resource type="Texture2D" path="res://Assets/Sprites/Francotirador.svg" id="9_tex"]
+
+[resource]
+script = ExtResource("1_fr1")
+weapon_name = "Francotirador"
+scene = ExtResource("1_fr2")
+id = 4
+damage = 55.0
+cooldown = 2.6
+rango = 28.0
+projectile_speed = 95.0
+pierce = 3
+knockback = 5.0
+crit_chance = 0.2
+crit_multiplier = 2.0
+rarity = 2
+crecimiento_damage = 10.0
+crecimiento_rango = 2.0
+crecimiento_cooldown = 0.1
+crecimiento_pierce = 1
+texture_sprite = ExtResource("9_tex")
+
+metadata/_custom_type_script = "uid://bvufqb6f7hqio"

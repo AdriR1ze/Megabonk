@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://i6ll7frv6ei"]
+
+[ext_resource type="Script" uid="uid://dgj8vsixewv00" path="res://item.gd" id="1_it1"]
+[ext_resource type="Resource" uid="uid://b7a6lald5lh0y" path="res://Resources/Skills/AuraVenenosa.tres" id="2_it2"]
+
+[ext_resource type="Texture2D" path="res://Assets/Sprites/AuraVenenosa.svg" id="9_tex"]
+
+[resource]
+script = ExtResource("1_it1")
+display_name = "Aura Venenosa"
+description = "Un veneno corrosivo que daña a los enemigos cercanos."
+skill = ExtResource("2_it2")
+stats = false
+texture_sprite = ExtResource("9_tex")
+
+metadata/_custom_type_script = "uid://dgj8vsixewv00"

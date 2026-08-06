@@ -306,6 +306,100 @@ r = join_objects(objs, "LanzaCohete")
 export("LanzaCohete", "lanzacohete.glb")
 
 # ════════════════════════════════════════════════════
+#                ARMAS EXTRA
+# ════════════════════════════════════════════════════
+print("🔫 Escopeta...")
+clear_scene()
+objs = []
+bpy.ops.mesh.primitive_cube_add(size=1, location=(0,0,0.05))
+o=bpy.context.object; o.name="Receptor"; o.scale=(0.3,0.06,0.08)
+bpy.ops.object.transform_apply(scale=True)
+mat(o,"ReceptorMat",(0.1,0.1,0.11),0.8,0.25); objs.append(o)
+for side,y in [(1,0.03),(-1,-0.03)]:
+    bpy.ops.mesh.primitive_cylinder_add(radius=0.021,depth=0.55,location=(0.28,y,0.045))
+    o=bpy.context.object; o.name=f"Canon{side}"; o.rotation_euler=(0,math.radians(90),0)
+    mat(o,f"CanonMat{side}",(0.05,0.05,0.05),0.9,0.15); objs.append(o)
+bpy.ops.mesh.primitive_cube_add(size=1, location=(-0.32,0,0.02))
+o=bpy.context.object; o.name="Culata"; o.scale=(0.18,0.05,0.08)
+bpy.ops.object.transform_apply(scale=True)
+mat(o,"CulataMat",(0.2,0.12,0.06),0.1,0.8); objs.append(o)
+bpy.ops.mesh.primitive_cube_add(size=1, location=(0.12,0,-0.03))
+o=bpy.context.object; o.name="Pump"; o.scale=(0.13,0.045,0.09)
+bpy.ops.object.transform_apply(scale=True)
+mat(o,"PumpMat",(0.06,0.06,0.07),0.75,0.3); objs.append(o)
+bpy.ops.mesh.primitive_cube_add(size=1, location=(0.06,0,-0.1))
+o=bpy.context.object; o.name="MangoEsc"; o.scale=(0.09,0.05,0.11)
+bpy.ops.object.transform_apply(scale=True); o.rotation_euler=(0,math.radians(-8),0)
+mat(o,"MangoEscMat",(0.2,0.12,0.06),0.1,0.8); objs.append(o)
+r = join_objects(objs, "Escopeta")
+export("Escopeta", "escopeta.glb")
+
+print("🎯 Francotirador...")
+clear_scene()
+objs = []
+bpy.ops.mesh.primitive_cube_add(size=1, location=(0,0,0.05))
+o=bpy.context.object; o.name="ReceptorFranco"; o.scale=(0.34,0.07,0.09)
+bpy.ops.object.transform_apply(scale=True)
+mat(o,"FrancoBodyMat",(0.06,0.07,0.08),0.8,0.25); objs.append(o)
+bpy.ops.mesh.primitive_cylinder_add(radius=0.02,depth=0.6,location=(0.32,0,0.05))
+o=bpy.context.object; o.name="CanonFranco"; o.rotation_euler=(0,math.radians(90),0)
+mat(o,"FrancoBarrelMat",(0.05,0.05,0.05),0.9,0.12); objs.append(o)
+bpy.ops.mesh.primitive_cube_add(size=1, location=(-0.32,0,0.03))
+o=bpy.context.object; o.name="CulataFranco"; o.scale=(0.2,0.05,0.07)
+bpy.ops.object.transform_apply(scale=True)
+mat(o,"FrancoStockMat",(0.08,0.08,0.08),0.2,0.7); objs.append(o)
+bpy.ops.mesh.primitive_cylinder_add(radius=0.028,depth=0.22,location=(0.08,0,0.16))
+o=bpy.context.object; o.name="MiraFranco"; o.rotation_euler=(0,math.radians(90),0)
+mat(o,"FrancoScopeMat",(0.04,0.04,0.05),0.85,0.2); objs.append(o)
+bpy.ops.mesh.primitive_cube_add(size=1, location=(0.02,0,-0.1))
+o=bpy.context.object; o.name="MangoFranco"; o.scale=(0.08,0.05,0.11)
+bpy.ops.object.transform_apply(scale=True); o.rotation_euler=(0,math.radians(-6),0)
+mat(o,"FrancoHandleMat",(0.1,0.07,0.05),0.1,0.85); objs.append(o)
+r = join_objects(objs, "Francotirador")
+export("Francotirador", "francotirador.glb")
+
+print("🔥 Lanzallamas...")
+clear_scene()
+objs = []
+bpy.ops.mesh.primitive_cylinder_add(radius=0.09,depth=0.34,location=(-0.2,0,-0.02))
+o=bpy.context.object; o.name="Tanque"; o.rotation_euler=(0,math.radians(90),0)
+mat(o,"TankMat",(0.55,0.1,0.05),0.6,0.35); objs.append(o)
+bpy.ops.mesh.primitive_cylinder_add(radius=0.04,depth=0.3,location=(0.2,0,0.04))
+o=bpy.context.object; o.name="Boquilla"; o.rotation_euler=(0,math.radians(90),0)
+mat(o,"NozzleMat",(0.05,0.05,0.05),0.85,0.2); objs.append(o)
+bpy.ops.mesh.primitive_cone_add(radius1=0.05,radius2=0.02,depth=0.1,location=(0.33,0,0.04))
+o=bpy.context.object; o.name="PuntaBoquilla"; o.rotation_euler=(0,math.radians(90),0)
+mat(o,"PuntaMat",(0.08,0.08,0.09),0.8,0.25); objs.append(o)
+bpy.ops.mesh.primitive_cube_add(size=1, location=(0.05,0,-0.14))
+o=bpy.context.object; o.name="Manija"; o.scale=(0.08,0.05,0.12)
+bpy.ops.object.transform_apply(scale=True); o.rotation_euler=(0,math.radians(-6),0)
+mat(o,"ManijaMat",(0.1,0.07,0.05),0.1,0.85); objs.append(o)
+r = join_objects(objs, "Lanzallamas")
+export("Lanzallamas", "lanzallamas.glb")
+
+print("💜 Cañón de Plasma...")
+clear_scene()
+objs = []
+bpy.ops.mesh.primitive_cylinder_add(radius=0.09,depth=0.5,location=(0,0,0.05))
+o=bpy.context.object; o.name="TuboPlasma"; o.rotation_euler=(0,math.radians(90),0)
+mat(o,"PlasmaTubeMat",(0.1,0.1,0.13),0.75,0.3); objs.append(o)
+for i,x in enumerate([-0.1,0.12]):
+    bpy.ops.mesh.primitive_torus_add(major_radius=0.11,minor_radius=0.016,
+                                      major_segments=14,minor_segments=8,
+                                      location=(x,0,0.05))
+    o=bpy.context.object; o.name=f"AnilloPlasma{i}"; o.rotation_euler=(math.radians(90),0,0)
+    mat(o,f"AnilloPlasmaMat{i}",(0,0.8,1),0,0,(0,0.8,1)); objs.append(o)
+bpy.ops.mesh.primitive_uv_sphere_add(radius=0.06,location=(0.02,0,0.05),segments=14,ring_count=10)
+o=bpy.context.object; o.name="NucleoPlasma"
+mat(o,"NucleoPlasmaMat",(0.6,0.2,1),0,0,(0.7,0.3,1)); objs.append(o)
+bpy.ops.mesh.primitive_cube_add(size=1, location=(-0.05,0,-0.12))
+o=bpy.context.object; o.name="MangoPlasma"; o.scale=(0.09,0.055,0.14)
+bpy.ops.object.transform_apply(scale=True); o.rotation_euler=(0,math.radians(-6),0)
+mat(o,"PlasmaHandleMat",(0.1,0.08,0.06),0.15,0.85); objs.append(o)
+r = join_objects(objs, "CanonPlasma")
+export("CanonPlasma", "canon_plasma.glb")
+
+# ════════════════════════════════════════════════════
 #                   BALAS
 # ════════════════════════════════════════════════════
 print("💛 Bala Normal...")
@@ -366,6 +460,71 @@ for i in range(4):
 
 r = join_objects(objs, "BalaBomba")
 export("BalaBomba", "balabomba_mesh.glb")
+
+# ════════════════════════════════════════════════════
+#                   BALAS EXTRA
+# ════════════════════════════════════════════════════
+print("🟠 Bala Pellet...")
+clear_scene()
+objs = []
+bpy.ops.mesh.primitive_uv_sphere_add(radius=0.055,location=(0,0,0),segments=10,ring_count=8)
+o=bpy.context.object; o.name="PelletCuerpo"; o.scale=(1,1,1.3)
+bpy.ops.object.transform_apply(scale=True)
+mat(o,"PelletMat",(0.95,0.55,0.1),0.9,0.15,(1,0.7,0.2)); objs.append(o)
+bpy.ops.mesh.primitive_cylinder_add(radius=0.012,depth=0.14,location=(0,0,-0.11))
+o=bpy.context.object; o.name="PelletEstela"
+mat(o,"PelletEstelaMat",(1,0.6,0.1),0,0,(1,0.6,0.1)); objs.append(o)
+r = join_objects(objs, "BalaPellet")
+export("BalaPellet", "bala_pellet_mesh.glb")
+
+print("🟢 Bala Franco...")
+clear_scene()
+objs = []
+bpy.ops.mesh.primitive_uv_sphere_add(radius=0.045,location=(0,0,0),segments=12,ring_count=8)
+o=bpy.context.object; o.name="FrancoCuerpo"; o.scale=(1,1,3.5)
+bpy.ops.object.transform_apply(scale=True)
+mat(o,"FrancoBalaMat",(0.1,0.9,0.4),0.5,0.1,(0.1,1,0.4)); objs.append(o)
+bpy.ops.mesh.primitive_cone_add(radius1=0.035,radius2=0.005,depth=0.12,location=(0,0,0.14))
+o=bpy.context.object; o.name="FrancoPunta"
+mat(o,"FrancoPuntaMat",(0.9,1,0.9),0.9,0.1); objs.append(o)
+bpy.ops.mesh.primitive_cylinder_add(radius=0.014,depth=0.4,location=(0,0,-0.3))
+o=bpy.context.object; o.name="FrancoEstela"
+mat(o,"FrancoEstelaMat",(0.1,0.9,0.4),0,0,(0.1,0.9,0.4)); objs.append(o)
+r = join_objects(objs, "BalaFranco")
+export("BalaFranco", "bala_franco_mesh.glb")
+
+print("🔥 Bala Fuego...")
+clear_scene()
+objs = []
+bpy.ops.mesh.primitive_uv_sphere_add(radius=0.08,location=(0,0,0),segments=12,ring_count=9)
+o=bpy.context.object; o.name="FuegoCuerpo"
+mat(o,"FuegoMat",(1,0.5,0),0,0,(1,0.5,0)); objs.append(o)
+bpy.ops.mesh.primitive_uv_sphere_add(radius=0.04,location=(0,0,0.01),segments=10,ring_count=8)
+o=bpy.context.object; o.name="FuegoNucleo"
+mat(o,"FuegoNucleoMat",(1,1,0.6),0,0,(1,1,0.6)); objs.append(o)
+bpy.ops.mesh.primitive_cone_add(radius1=0.06,radius2=0.01,depth=0.22,location=(0,0,-0.12))
+o=bpy.context.object; o.name="FuegoEstela"; o.rotation_euler=(math.radians(180),0,0)
+mat(o,"FuegoEstelaMat",(1,0.3,0),0,0,(1,0.3,0)); objs.append(o)
+r = join_objects(objs, "BalaFuego")
+export("BalaFuego", "bala_fuego_mesh.glb")
+
+print("🟣 Bala Plasma...")
+clear_scene()
+objs = []
+bpy.ops.mesh.primitive_uv_sphere_add(radius=0.13,location=(0,0,0),segments=16,ring_count=12)
+o=bpy.context.object; o.name="PlasmaCuerpo"
+mat(o,"PlasmaBalaMat",(0.5,0.2,1),0,0,(0.6,0.2,1)); objs.append(o)
+bpy.ops.mesh.primitive_uv_sphere_add(radius=0.06,location=(0,0,0.01),segments=10,ring_count=8)
+o=bpy.context.object; o.name="PlasmaNucleo"
+mat(o,"PlasmaNucleoMat",(1,0.8,1),0,0,(1,0.8,1)); objs.append(o)
+for i,ang in enumerate([0, math.pi/3]):
+    bpy.ops.mesh.primitive_torus_add(major_radius=0.18,minor_radius=0.012,
+                                      major_segments=16,minor_segments=8,
+                                      location=(0,0,0))
+    o=bpy.context.object; o.name=f"PlasmaAnillo{i}"; o.rotation_euler=(math.radians(60),0,ang)
+    mat(o,f"PlasmaAnilloMat{i}",(0.3,0.9,1),0,0,(0.3,0.9,1)); objs.append(o)
+r = join_objects(objs, "BalaPlasma")
+export("BalaPlasma", "bala_plasma_mesh.glb")
 
 print("\n" + "═"*50)
 print(f"🎉 ¡Todos los modelos generados exitosamente!")

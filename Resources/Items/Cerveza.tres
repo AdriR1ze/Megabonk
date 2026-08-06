@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://jq6eh8qinps3"]
+
+[ext_resource type="Script" uid="uid://dgj8vsixewv00" path="res://item.gd" id="1_m2v8b"]
+
+[ext_resource type="Texture2D" path="res://Assets/Sprites/Cerveza.svg" id="9_tex"]
+
+[resource]
+script = ExtResource("1_m2v8b")
+id = 8
+display_name = "Cerveza"
+description = "Vas a pegar como nunca (y fallar como siempre)"
+atack = 0.2
+evasion = -0.05
+crit_chance = 5.0
+texture_sprite = ExtResource("9_tex")
+
+metadata/_custom_type_script = "uid://dgj8vsixewv00"

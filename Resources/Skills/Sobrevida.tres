@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="SobrevidaSkill" format=3]
+
+[ext_resource type="Script" path="res://Skills/sobrevida_skill.gd" id="1_sobr"]
+
+[resource]
+script = ExtResource("1_sobr")
+skill_name = "Sobrevida"
+description = "Escudo naranja de +20 de vida que se recarga cada 10 segundos."
+amount = 20.0
+refill_interval = 10.0

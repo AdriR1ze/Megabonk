@@ -1,11 +1,13 @@
 [gd_resource type="Resource" script_class="Item" format=3 uid="uid://cfaqd3eou7pe2"]
 
 [ext_resource type="Script" uid="uid://dgj8vsixewv00" path="res://item.gd" id="1_trhja"]
+[ext_resource type="Texture2D" uid="uid://bdwi760j7hhcf" path="res://Assets/Sprites/Bateria.svg" id="9_tex"]
 
 [resource]
 script = ExtResource("1_trhja")
 id = 3
 display_name = "Bateria"
 description = "Te pones a full con esta"
+texture_sprite = ExtResource("9_tex")
 atq_speed = 0.2
 metadata/_custom_type_script = "uid://dgj8vsixewv00"

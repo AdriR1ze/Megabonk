@@ -6,9 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://dvqphdeiurme1" path="res://menu armas.tscn" id="2_t8jxu"]
 [ext_resource type="Texture2D" uid="uid://bfp2c6ombpolk" path="res://hierba-textura-fluida-patron-cesped-natural_172107-1308.png" id="3_5ckkb"]
 [ext_resource type="PackedScene" uid="uid://bhuiggvoli0bh" path="res://item.tscn" id="4_otwa2"]
-[ext_resource type="PackedScene" uid="uid://bmlrr2ib6dwf5" path="res://spawner.tscn" id="7_2hh7m"]
 [ext_resource type="PackedScene" uid="uid://bsvowmsukqcnn" path="res://item_spawner.tscn" id="7_t8jxu"]
 [ext_resource type="PackedScene" uid="uid://c6hud382aaklx" path="res://hud.tscn" id="8_hud"]
+[ext_resource type="PackedScene" uid="uid://c8j2k1m3p4q5" path="res://game_over.tscn" id="9_gameover"]
+[ext_resource type="PackedScene" path="res://upgrade_menu.tscn" id="10_upmenu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_floor"]
 size = Vector3(200, 1, 200)
@@ -101,6 +102,9 @@ glow_bloom = 0.1
 visible = false
 
 [node name="MenuArmas" parent="CanvasLayer" unique_id=1748608180 instance=ExtResource("2_t8jxu")]
+visible = false
+
+[node name="UpgradeMenu" parent="CanvasLayer" unique_id=1511491747 instance=ExtResource("10_upmenu")]
 visible = false
 
 [node name="Mapa" type="Node3D" parent="." unique_id=213141726]
@@ -208,5 +212,10 @@ shadow_enabled = true
 
 [node name="ItemSpawner" parent="Spawners" unique_id=967341465 instance=ExtResource("7_t8jxu")]
 chest_scene = ExtResource("4_otwa2")
-cantidad = 12
-radio = 45.0
+cantidad = 100
+radio = 60.0
+
+[node name="CanvasGameOver" type="CanvasLayer" parent="." unique_id=987654123]
+layer = 10
+
+[node name="GameOver" parent="CanvasGameOver" unique_id=876543210 instance=ExtResource("9_gameover")]

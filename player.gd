@@ -18,9 +18,26 @@ var _regen_timer : float = 0.0
 func _ready() -> void:
 	add_to_group("player")
 	WeaponManager.player = self
+	EventBus.run_started.emit()
 	await get_tree().process_frame
 	ItemManager.player = self
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	ItemManager.stats_changed.connect(_on_item_stats_changed)
+	# Sincronizar vida máxima con PlayerStats (incluye mejoras permanentes)
+	health_component.max_health = PlayerStats.max_health
+	health_component.health = PlayerStats.max_health
+	health_component.health_changed.emit(health_component.health, health_component.max_health)
+
+func _on_item_stats_changed() -> void:
+	if health_component.max_health == PlayerStats.max_health:
+		return
+	var diff := PlayerStats.max_health - health_component.max_health
+	health_component.max_health = PlayerStats.max_health
+	if diff > 0.0:
+		health_component.health = min(health_component.health + diff, PlayerStats.max_health)
+	else:
+		health_component.health = min(health_component.health, PlayerStats.max_health)
+	health_component.health_changed.emit(health_component.health, health_component.max_health)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if get_tree().paused:
@@ -63,5 +80,19 @@ func _physics_process(delta: float) -> void:
 
 func take_damage(amount: float) -> void:
 	var final_damage = max(1.0, amount - (PlayerStats.defense - 1.0))
+
+	# Escudo absorbente: bloquea un golpe completo
+	var escudo = get_tree().get_first_node_in_group("escudo")
+	if escudo and escudo.has_method("try_block") and escudo.try_block():
+		EventBus.shield_blocked.emit()
+		return
+
+	# Sobrevida: absorbe daño antes que la vida real
+	var sobrevida = get_tree().get_first_node_in_group("sobrevida")
+	if sobrevida and sobrevida.has_method("absorb"):
+		final_damage = sobrevida.absorb(final_damage)
+
 	if health_component:
+		if final_damage > 0.0:
+			EventBus.player_took_damage.emit()
 		health_component.take_damage(final_damage)

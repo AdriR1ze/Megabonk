@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="DanoExtraSkill" format=3]
+
+[ext_resource type="Script" path="res://Skills/dano_extra_skill.gd" id="1_dae"]
+
+[resource]
+script = ExtResource("1_dae")
+skill_name = "Daño Extra"
+description = "Probabilidad del 20% de causar 20 de daño adicional al disparar."
+chance = 0.2
+extra_damage = 20.0

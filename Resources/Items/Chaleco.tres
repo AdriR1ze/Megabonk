@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://dtb75ahrwmnwo"]
+
+[ext_resource type="Script" uid="uid://dgj8vsixewv00" path="res://item.gd" id="1_h2m4q"]
+[ext_resource type="Texture2D" uid="uid://dqgta6wrqv52o" path="res://Assets/Sprites/Chaleco.svg" id="9_tex"]
+
+[resource]
+script = ExtResource("1_h2m4q")
+id = 12
+display_name = "Chaleco"
+description = "Chaleco antibalas (y antidesilusiones)"
+texture_sprite = ExtResource("9_tex")
+defense = 0.2
+xp_multiplicator = 0.5
+metadata/_custom_type_script = "uid://dgj8vsixewv00"

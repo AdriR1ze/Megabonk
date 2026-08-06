@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://cjub835lgi16f"]
+
+[ext_resource type="Script" uid="uid://dgj8vsixewv00" path="res://item.gd" id="1_8xx3w"]
+[ext_resource type="Texture2D" uid="uid://cad8qgn8enlaf" path="res://Assets/Sprites/Anteojos.svg" id="9_tex"]
+
+[resource]
+script = ExtResource("1_8xx3w")
+id = 4
+display_name = "Anteojos"
+description = "Anteojos que estan fiumba"
+texture_sprite = ExtResource("9_tex")
+crit_chance = 10.0
+metadata/_custom_type_script = "uid://dgj8vsixewv00"
