@@ -21,7 +21,7 @@ func _on_enemy_died(_enemy_node: Node3D, _xp_reward: int, _coin_reward: int) -> 
 	enemies_killed += 1
 
 func get_chest_price() -> int: 
-	chest_price = 0
+	chest_price = 20
 	calc_chest_price(chests_opened)
 	return chest_price
 func calc_chest_price(x):

@@ -177,9 +177,9 @@ func _shoot_laser_bolt(target_pos: Vector3) -> void:
 	tween.tween_property(bolt, "global_position", spawn_pos + shoot_dir * 45.0, 1.2)
 	tween.chain().tween_callback(bolt.queue_free)
 
-func take_damage(damage_amount: float, is_critical: bool = false) -> void:
+func take_damage(damage_amount: float, is_critical: bool = false, crit_tier: int = 0) -> void:
 	if health_component:
-		health_component.take_damage(damage_amount, is_critical)
+		health_component.take_damage(damage_amount, is_critical, crit_tier)
 
 func _on_health_changed(current: float, max_hp: float) -> void:
 	EventBus.boss_health_changed.emit(current, max_hp)

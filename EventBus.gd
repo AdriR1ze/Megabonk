@@ -15,7 +15,7 @@ signal player_coins_changed(total_coins: int)
 # Eventos de Combate y Enemigos
 signal enemy_spawned(enemy_node: Node3D)
 signal enemy_died(enemy_node: Node3D, xp_reward: int, coin_reward: int)
-signal damage_dealt(target: Node3D, amount: float, is_critical: bool)
+signal damage_dealt(target: Node3D, amount: float, is_critical: bool, crit_tier: int)
 
 # Eventos del Boss
 signal boss_spawned(boss_node: Node3D, boss_name: String)

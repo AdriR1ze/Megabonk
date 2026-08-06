@@ -15,7 +15,7 @@ func _ready() -> void:
 	EventBus.player_died.connect(_show_game_over)
 	EventBus.damage_dealt.connect(_spawn_damage_number)
 
-func _spawn_damage_number(target: Node3D, amount: float, is_critical: bool) -> void:
+func _spawn_damage_number(target: Node3D, amount: float, is_critical: bool, crit_tier: int = 0) -> void:
 	if not is_instance_valid(target) or not target.is_inside_tree():
 		return
 
@@ -24,19 +24,13 @@ func _spawn_damage_number(target: Node3D, amount: float, is_critical: bool) -> v
 	label.no_depth_test = true
 	label.render_priority = 10
 	label.pixel_size = 0.015
-	label.font_size = 48 if is_critical else 36
-	label.text = str(int(round(amount))) + ("!" if is_critical else "")
+	label.font_size = 34 + crit_tier * 5
+	label.text = str(int(round(amount))) + ("!".repeat(crit_tier) if crit_tier > 0 else "")
 
-	if is_critical:
-		label.modulate = Color(1.0, 0.2, 0.1, 1.0)
-		label.outline_render_priority = 9
-		label.outline_size = 8
-		label.outline_modulate = Color(0, 0, 0, 1)
-	else:
-		label.modulate = Color(1.0, 0.95, 0.3, 1.0)
-		label.outline_render_priority = 9
-		label.outline_size = 6
-		label.outline_modulate = Color(0, 0, 0, 1)
+	label.modulate = _crit_color(crit_tier)
+	label.outline_render_priority = 9
+	label.outline_size = 8 if crit_tier > 0 else 6
+	label.outline_modulate = Color(0, 0, 0, 1)
 
 	get_tree().current_scene.add_child(label)
 
@@ -49,6 +43,16 @@ func _spawn_damage_number(target: Node3D, amount: float, is_critical: bool) -> v
 	tween.tween_property(label, "global_position", target_pos, 0.65).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	tween.tween_property(label, "modulate:a", 0.0, 0.65).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 	tween.chain().tween_callback(label.queue_free)
+
+# Color automático según la cantidad de críticos encadenados.
+func _crit_color(tier: int) -> Color:
+	match tier:
+		0: return Color(1.0, 0.95, 0.3)
+		1: return Color(1.0, 0.2, 0.1)
+		2: return Color(1.0, 0.45, 0.0)
+		3: return Color(0.85, 0.2, 1.0)
+		4: return Color(0.2, 0.85, 1.0)
+		_: return Color(1.0, 1.0, 1.0)
 
 # Registrar los nodos de pantalla desde las propias escenas (self-register)
 func register_hud(node: Control) -> void:

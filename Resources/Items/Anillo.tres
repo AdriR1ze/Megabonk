@@ -10,7 +10,7 @@ id = 9
 display_name = "Anillo"
 description = "Anillo de la buena vibra"
 evasion = 0.05
-crit_chance = 5.0
+crit_chance = 4.0
 texture_sprite = ExtResource("9_tex")
 
 metadata/_custom_type_script = "uid://dgj8vsixewv00"

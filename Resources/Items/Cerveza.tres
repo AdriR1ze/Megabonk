@@ -11,7 +11,7 @@ display_name = "Cerveza"
 description = "Vas a pegar como nunca (y fallar como siempre)"
 atack = 0.2
 evasion = -0.05
-crit_chance = 5.0
+crit_chance = 3.0
 texture_sprite = ExtResource("9_tex")
 
 metadata/_custom_type_script = "uid://dgj8vsixewv00"

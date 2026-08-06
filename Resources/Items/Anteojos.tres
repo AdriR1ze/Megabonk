@@ -9,5 +9,5 @@ id = 4
 display_name = "Anteojos"
 description = "Anteojos que estan fiumba"
 texture_sprite = ExtResource("9_tex")
-crit_chance = 10.0
+crit_chance = 6.0
 metadata/_custom_type_script = "uid://dgj8vsixewv00"

@@ -42,6 +42,16 @@ func _ready() -> void:
 func _on_tick() -> void:
 	for body in get_overlapping_bodies():
 		if body.is_in_group("enemy") and body.has_method("take_damage"):
-			var is_crit = randf() < PlayerStats.crit_chance
-			var dmg = damage * PlayerStats.atack * (PlayerStats.crit_multiplier if is_crit else 1.0)
-			body.take_damage(dmg, is_crit)
+			var crits := _roll_crits()
+			var dmg = damage * PlayerStats.atack * pow(PlayerStats.crit_multiplier, crits)
+			body.take_damage(dmg, crits > 0, crits)
+
+func _roll_crits() -> int:
+	var chance := PlayerStats.crit_chance
+	var crits := 0
+	while chance >= 1.0:
+		crits += 1
+		chance -= 1.0
+	if randf() < chance:
+		crits += 1
+	return crits

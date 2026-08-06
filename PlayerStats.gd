@@ -8,7 +8,7 @@ var move_speed : float = 1.0     # Multiplicador de velocidad
 var atack : float = 1.0          # Multiplicador de daño
 var atq_speed : float = 1.0      # Multiplicador de velocidad de ataque
 var crit_chance : float = 0.05   # Probabilidad de crítico (0.0 - 1.0)
-var crit_multiplier : float = 1.5
+var crit_multiplier : float = 1.3
 var evasion : float = 0.0
 var xp_multiplicator : float = 1.0
 var regen : float = 0.0          # Vida regenerada por segundo
@@ -54,7 +54,7 @@ func reset_for_new_run() -> void:
 	atack = 1.0
 	atq_speed = 1.0
 	crit_chance = 0.05
-	crit_multiplier = 1.5
+	crit_multiplier = 1.3
 	evasion = 0.0
 	xp_multiplicator = 1.0
 	regen = 0.0

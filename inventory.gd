@@ -131,7 +131,7 @@ func _build_item_card(it: Item) -> Control:
 		if it.evasion > 0.0:
 			lines.append("+%d%% Evasión" % round(it.evasion * 100))
 		if it.crit_chance > 0.0:
-			lines.append("+%d%% Crítico" % round(it.crit_chance * 100))
+			lines.append("+%d%% Crítico" % round(it.crit_chance))
 		if it.xp_multiplicator > 0.0:
 			lines.append("+%d%% XP" % round(it.xp_multiplicator * 100))
 	body.text = "\n".join(lines)

@@ -10,5 +10,5 @@ display_name = "Corona"
 description = "Corona del rey, como debe ser"
 texture_sprite = ExtResource("9_tex")
 defense = 0.2
-crit_chance = 5.0
+crit_chance = 3.0
 metadata/_custom_type_script = "uid://dgj8vsixewv00"

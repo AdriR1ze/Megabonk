@@ -10,7 +10,7 @@ id = 24
 display_name = "Medalla"
 description = "Medalla de honor (de la esquina)"
 atack = 0.2
-crit_chance = 5.0
+crit_chance = 3.0
 texture_sprite = ExtResource("9_tex")
 
 metadata/_custom_type_script = "uid://dgj8vsixewv00"

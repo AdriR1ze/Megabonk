@@ -17,7 +17,7 @@ func _ready():
 	if parent.is_in_group("player"):
 		health_changed.connect(func(cur, mx): EventBus.player_health_changed.emit(cur, mx))
 
-func take_damage(damage: float, is_critical: bool = false) -> void:
+func take_damage(damage: float, is_critical: bool = false, crit_tier: int = 0) -> void:
 	# Evasión (solo aplica al jugador)
 	if parent.is_in_group("player") and randf() < PlayerStats.evasion:
 		return
@@ -25,7 +25,7 @@ func take_damage(damage: float, is_critical: bool = false) -> void:
 	health_changed.emit(health, max_health)
 
 	if parent.is_in_group("enemy"):
-		EventBus.damage_dealt.emit(parent, damage, is_critical)
+		EventBus.damage_dealt.emit(parent, damage, is_critical, crit_tier)
 
 	if health <= 0.0:
 		die()

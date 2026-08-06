@@ -9,7 +9,7 @@ script = ExtResource("1_t8w4f")
 id = 17
 display_name = "Péndulo"
 description = "Péndulo que detecta golpes a distancia"
-crit_chance = 15.0
+crit_chance = 8.0
 texture_sprite = ExtResource("9_tex")
 
 metadata/_custom_type_script = "uid://dgj8vsixewv00"

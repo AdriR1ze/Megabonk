@@ -18,5 +18,6 @@ func perform_attack(target):
 		bullet.direccion = dir
 		bullet.damage = data.damage / PELLETS
 		bullet.player_atack = PlayerStats.atack
+		bullet.pierce = data.pierce
 
 	$Timer.start()

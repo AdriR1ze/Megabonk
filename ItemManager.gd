@@ -57,7 +57,7 @@ func _reset_stats() -> void:
 	PlayerStats.evasion = 0.0
 	PlayerStats.atq_speed = 1.0
 	PlayerStats.atack = 1.0
-	PlayerStats.crit_chance = 0.0
+	PlayerStats.crit_chance = 0.05
 	PlayerStats.xp_multiplicator = 1.0
 	PlayerStats.dano_extra_chance = 0.0
 	PlayerStats.dano_extra_amount = 0.0
@@ -68,6 +68,6 @@ func _set_stats(item) -> void:
 	PlayerStats.evasion += item.evasion
 	PlayerStats.atq_speed += item.atq_speed
 	PlayerStats.atack += item.atack
-	PlayerStats.crit_chance += item.crit_chance
+	PlayerStats.crit_chance += item.crit_chance / 100.0
 	PlayerStats.xp_multiplicator += item.xp_multiplicator
 	stats_changed.emit()

@@ -40,9 +40,9 @@ func _physics_process(delta: float) -> void:
 				if collider.has_method("take_damage"):
 					collider.take_damage(dmg)
 
-func take_damage(damage_amount: float, is_critical: bool = false) -> void:
+func take_damage(damage_amount: float, is_critical: bool = false, crit_tier: int = 0) -> void:
 	if health_component:
-		health_component.take_damage(damage_amount, is_critical)
+		health_component.take_damage(damage_amount, is_critical, crit_tier)
 
 func reset_enemy(health_multiplier: float = 1.0) -> void:
 	if health_component:
