@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Item" format=3 uid="uid://basf4dos515xv"]
 
-[ext_resource type="Script" uid="uid://dgj8vsixewv00" path="res://item.gd" id="1_w6c9b"]
+[ext_resource type="Script" uid="uid://dgj8vsixewv00" path="res://scripts/items/item.gd" id="1_w6c9b"]
 [ext_resource type="Texture2D" uid="uid://ch0up610husky" path="res://Assets/Sprites/Corona.svg" id="9_tex"]
 
 [resource]
@@ -9,6 +9,7 @@ id = 20
 display_name = "Corona"
 description = "Corona del rey, como debe ser"
 texture_sprite = ExtResource("9_tex")
+rarity = 2
 defense = 0.2
 crit_chance = 3.0
 metadata/_custom_type_script = "uid://dgj8vsixewv00"

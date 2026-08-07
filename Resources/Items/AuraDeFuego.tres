@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Item" format=3 uid="uid://h00vb0chdk0s"]
 
-[ext_resource type="Script" uid="uid://dgj8vsixewv00" path="res://item.gd" id="1_it1"]
+[ext_resource type="Script" uid="uid://dgj8vsixewv00" path="res://scripts/items/item.gd" id="1_it1"]
 [ext_resource type="Resource" uid="uid://gjafpnsd6vsd" path="res://Resources/Skills/AuraDeFuego.tres" id="2_it2"]
 [ext_resource type="Texture2D" uid="uid://vsghoak5y2xl" path="res://Assets/Sprites/AuraDeFuego.svg" id="9_tex"]
 
@@ -9,6 +9,7 @@ script = ExtResource("1_it1")
 display_name = "Aura de Fuego"
 description = "Una llama ardiente quema a los enemigos cercanos."
 texture_sprite = ExtResource("9_tex")
+rarity = 3
 skill = ExtResource("2_it2")
 stats = false
 metadata/_custom_type_script = "uid://dgj8vsixewv00"

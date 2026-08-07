@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://xjwb6l3bpsgp"]
 
-[ext_resource type="Script" uid="uid://bvufqb6f7hqio" path="res://WeaponData.gd" id="1_cev2q"]
+[ext_resource type="Script" uid="uid://bvufqb6f7hqio" path="res://scripts/data/WeaponData.gd" id="1_cev2q"]
 [ext_resource type="PackedScene" uid="uid://bm0mn0l8etrxu" path="res://Armas/area_de_pistola.tscn" id="1_mn4qw"]
 [ext_resource type="Texture2D" uid="uid://kv3gnl70cdhi" path="res://Assets/Sprites/Pistola.svg" id="9_tex"]
 

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EnemyData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+enemy_name = "Guerrero"
+scene = null
+base_hp = 85.0
+speed = 7.0
+damage = 15.0
+attack_cooldown = 0.75
+xp_reward = 2
+coin_chance = 0.65
+is_boss = false
+credit_cost = 3
+model_shape = "box"
+model_color = Color(0.7, 0.2, 0.15, 1)
+model_scale = Vector3(0.8, 1.0, 0.8)

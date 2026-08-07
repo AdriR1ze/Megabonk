@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://dme2thytqnfde"]
+
+[ext_resource type="Script" uid="uid://dgj8vsixewv00" path="res://scripts/items/item.gd" id="1_scr"]
+[ext_resource type="Texture2D" uid="uid://c023pi0d0qjly" path="res://Assets/Sprites/Lanzallamas.svg" id="9_tex"]
+
+[resource]
+script = ExtResource("1_scr")
+display_name = "Encendedor"
+description = "Prende fuego las balas (o casi)"
+texture_sprite = ExtResource("9_tex")
+rarity = 1
+crit_chance = 3.0
+metadata/_custom_type_script = "uid://dgj8vsixewv00"

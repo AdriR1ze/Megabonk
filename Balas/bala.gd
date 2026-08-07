@@ -4,7 +4,7 @@ extends CharacterBody3D
 @export var SPEED = 35.0
 @onready var direccion : Vector3
 var player_atack : float = 1.0
-var damage : float = 10.0
+@export var damage : float = 10.0
 var pierce : int = 1
 var _hit_targets : Array = []
 func _ready() -> void:

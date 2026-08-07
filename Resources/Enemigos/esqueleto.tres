@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EnemyData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+enemy_name = "Esqueleto"
+scene = null
+base_hp = 55.0
+speed = 5.5
+damage = 10.0
+attack_cooldown = 0.9
+xp_reward = 1
+coin_chance = 0.55
+is_boss = false
+credit_cost = 2
+model_shape = "capsule"
+model_color = Color(0.85, 0.82, 0.7, 1)
+model_scale = Vector3(0.45, 1.2, 0.45)

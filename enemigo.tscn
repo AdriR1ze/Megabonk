@@ -1,8 +1,14 @@
-[gd_scene format=3 uid="uid://bhu7dmau1esuu"]
+[gd_scene format=3 uid="uid://bm1t6qku7in5a"]
 
-[ext_resource type="Script" uid="uid://bs7mdq4po0me0" path="res://enemigo.gd" id="1_becj5"]
-[ext_resource type="Script" uid="uid://b7dr08w7510jn" path="res://health_component.gd" id="2_a5tj2"]
-[ext_resource type="PackedScene" uid="uid://b4io45adxsb8b" path="res://Assets/Models/enemigo.glb" id="3_enemiglb"]
+[ext_resource type="Script" uid="uid://bs7mdq4po0me0" path="res://scripts/enemies/enemigo.gd" id="1_becj5"]
+[ext_resource type="Script" uid="uid://b7dr08w7510jn" path="res://scripts/components/health_component.gd" id="2_a5tj2"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_default"]
+height = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_default"]
+albedo_color = Color(0.5, 0.5, 0.5, 1)
+roughness = 0.6
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tdeca"]
 
@@ -11,7 +17,9 @@ collision_layer = 32769
 collision_mask = 32769
 script = ExtResource("1_becj5")
 
-[node name="MeshInstance3D" parent="." unique_id=1848074985 instance=ExtResource("3_enemiglb")]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1263656875]
+mesh = SubResource("CapsuleMesh_default")
+surface_material_override/0 = SubResource("StandardMaterial3D_default")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=429416610]
 shape = SubResource("CapsuleShape3D_tdeca")

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Item" format=3 uid="uid://cfaqd3eou7pe2"]
 
-[ext_resource type="Script" uid="uid://dgj8vsixewv00" path="res://item.gd" id="1_trhja"]
+[ext_resource type="Script" uid="uid://dgj8vsixewv00" path="res://scripts/items/item.gd" id="1_trhja"]
 [ext_resource type="Texture2D" uid="uid://bdwi760j7hhcf" path="res://Assets/Sprites/Bateria.svg" id="9_tex"]
 
 [resource]

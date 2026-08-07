@@ -2,7 +2,7 @@ extends Weapon
 
 @export var bala : PackedScene
 
-const PELLETS := 5
+const PELLETS := 10
 const SPREAD := 0.18
 
 func perform_attack(target):

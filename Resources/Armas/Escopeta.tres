@@ -1,25 +1,21 @@
 [gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://1khqbst3ma0c"]
 
-[ext_resource type="Script" uid="uid://bvufqb6f7hqio" path="res://WeaponData.gd" id="1_es1"]
-[ext_resource type="PackedScene" uid="uid://2cbcpa39r42sf" path="res://Armas/area_de_escopeta.tscn" id="1_es2"]
-
-[ext_resource type="Texture2D" path="res://Assets/Sprites/Escopeta.svg" id="9_tex"]
+[ext_resource type="Script" uid="uid://bvufqb6f7hqio" path="res://scripts/data/WeaponData.gd" id="1_es1"]
+[ext_resource type="PackedScene" uid="uid://f8kvoitpxh2" path="res://Armas/area_de_escopeta.tscn" id="1_es2"]
+[ext_resource type="Texture2D" uid="uid://littoihnry41" path="res://Assets/Sprites/Escopeta.svg" id="9_tex"]
 
 [resource]
 script = ExtResource("1_es1")
 weapon_name = "Escopeta"
-scene = ExtResource("1_es2")
 id = 3
-damage = 12.0
-cooldown = 1.3
+texture_sprite = ExtResource("9_tex")
+scene = ExtResource("1_es2")
+damage = 25.0
+cooldown = 2.0
 rango = 8.0
 projectile_speed = 45.0
-pierce = 1
 knockback = 3.0
-rarity = 1
 crecimiento_damage = 2.5
 crecimiento_rango = 0.4
 crecimiento_cooldown = 0.05
-texture_sprite = ExtResource("9_tex")
-
 metadata/_custom_type_script = "uid://bvufqb6f7hqio"

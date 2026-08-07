@@ -1,15 +1,13 @@
 [gd_resource type="Resource" script_class="Item" format=3 uid="uid://bmm6t2lbx74pb"]
 
-[ext_resource type="Script" uid="uid://dgj8vsixewv00" path="res://item.gd" id="1_r5p8n"]
-
-[ext_resource type="Texture2D" path="res://Assets/Sprites/Botas.svg" id="9_tex"]
+[ext_resource type="Script" uid="uid://dgj8vsixewv00" path="res://scripts/items/item.gd" id="1_r5p8n"]
+[ext_resource type="Texture2D" uid="uid://k78tmivtvy11" path="res://Assets/Sprites/Botas.svg" id="9_tex"]
 
 [resource]
 script = ExtResource("1_r5p8n")
 id = 11
 display_name = "Botas"
 description = "Botas de caminante, zapatillas del pueblo"
-move_speed = 0.1
 texture_sprite = ExtResource("9_tex")
-
+move_speed = 0.1
 metadata/_custom_type_script = "uid://dgj8vsixewv00"

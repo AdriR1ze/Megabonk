@@ -1,25 +1,22 @@
 [gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://bki4kn2ggmd02"]
 
-[ext_resource type="Script" uid="uid://bvufqb6f7hqio" path="res://WeaponData.gd" id="1_ll1"]
-[ext_resource type="PackedScene" uid="uid://34atb17ulqasb" path="res://Armas/area_de_lanzallamas.tscn" id="1_ll2"]
-
-[ext_resource type="Texture2D" path="res://Assets/Sprites/Lanzallamas.svg" id="9_tex"]
+[ext_resource type="Script" uid="uid://bvufqb6f7hqio" path="res://scripts/data/WeaponData.gd" id="1_ll1"]
+[ext_resource type="PackedScene" uid="uid://b2fp6nr3nb5hx" path="res://Armas/area_de_lanzallamas.tscn" id="1_ll2"]
+[ext_resource type="Texture2D" uid="uid://c023pi0d0qjly" path="res://Assets/Sprites/Lanzallamas.svg" id="9_tex"]
 
 [resource]
 script = ExtResource("1_ll1")
 weapon_name = "Lanzallamas"
-scene = ExtResource("1_ll2")
 id = 5
+texture_sprite = ExtResource("9_tex")
+scene = ExtResource("1_ll2")
 damage = 6.0
 cooldown = 0.18
 rango = 6.5
 projectile_speed = 28.0
 pierce = 2
 knockback = 0.5
-rarity = 1
 crecimiento_damage = 1.2
 crecimiento_rango = 0.3
 crecimiento_cooldown = 0.002
-texture_sprite = ExtResource("9_tex")
-
 metadata/_custom_type_script = "uid://bvufqb6f7hqio"

@@ -1,14 +1,14 @@
-[gd_resource type="Resource" script_class="Item" format=3]
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://difceh3nongqb"]
 
-[ext_resource type="Script" path="res://item.gd" id="1_it"]
+[ext_resource type="Script" uid="uid://dgj8vsixewv00" path="res://scripts/items/item.gd" id="1_it"]
 [ext_resource type="Resource" path="res://Resources/Skills/EscudoAbsorbente.tres" id="2_it"]
-
-[ext_resource type="Texture2D" path="res://Assets/Sprites/EscudoAbsorbente.svg" id="9_tex"]
+[ext_resource type="Texture2D" uid="uid://c8dmoqx6k3tsd" path="res://Assets/Sprites/EscudoAbsorbente.svg" id="9_tex"]
 
 [resource]
 script = ExtResource("1_it")
 display_name = "Escudo Absorbente"
 description = "Un escudo mágico que bloquea un golpe completo cada 10 segundos."
+texture_sprite = ExtResource("9_tex")
+rarity = 3
 skill = ExtResource("2_it")
 stats = false
-texture_sprite = ExtResource("9_tex")

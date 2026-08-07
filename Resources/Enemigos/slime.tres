@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EnemyData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+enemy_name = "Slime"
+scene = null
+base_hp = 25.0
+speed = 3.0
+damage = 5.0
+attack_cooldown = 1.2
+xp_reward = 1
+coin_chance = 0.45
+is_boss = false
+credit_cost = 1
+model_shape = "sphere"
+model_color = Color(0.2, 0.7, 0.3, 1)
+model_scale = Vector3(0.6, 0.5, 0.6)

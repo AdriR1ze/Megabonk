@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://b3s7qhb3cgdrf"]
+
+[ext_resource type="Script" uid="uid://dgj8vsixewv00" path="res://scripts/items/item.gd" id="1_scr"]
+[ext_resource type="Texture2D" uid="uid://littoihnry41" path="res://Assets/Sprites/Escopeta.svg" id="9_tex"]
+
+[resource]
+script = ExtResource("1_scr")
+display_name = "Chaleco Tactico"
+description = "Proteccion sin perder agilidad"
+texture_sprite = ExtResource("9_tex")
+rarity = 1
+move_speed = -0.03
+defense = 0.4
+metadata/_custom_type_script = "uid://dgj8vsixewv00"

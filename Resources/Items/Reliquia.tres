@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Item" format=3 uid="uid://e86lwtlsjoo5"]
 
-[ext_resource type="Script" uid="uid://dgj8vsixewv00" path="res://item.gd" id="1_b7w9k"]
+[ext_resource type="Script" uid="uid://dgj8vsixewv00" path="res://scripts/items/item.gd" id="1_b7w9k"]
 [ext_resource type="Texture2D" uid="uid://db5q5pk8862f3" path="res://Assets/Sprites/Reliquia.svg" id="9_tex"]
 
 [resource]
@@ -9,5 +9,6 @@ id = 13
 display_name = "Reliquia"
 description = "Reliquia ancestral con poderes random"
 texture_sprite = ExtResource("9_tex")
+rarity = 2
 xp_multiplicator = 1.5
 metadata/_custom_type_script = "uid://dgj8vsixewv00"

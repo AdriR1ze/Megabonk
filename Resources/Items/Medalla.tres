@@ -1,16 +1,15 @@
 [gd_resource type="Resource" script_class="Item" format=3 uid="uid://volwgtirvih2"]
 
-[ext_resource type="Script" uid="uid://dgj8vsixewv00" path="res://item.gd" id="1_t2v8m"]
-
-[ext_resource type="Texture2D" path="res://Assets/Sprites/Medalla.svg" id="9_tex"]
+[ext_resource type="Script" uid="uid://dgj8vsixewv00" path="res://scripts/items/item.gd" id="1_t2v8m"]
+[ext_resource type="Texture2D" uid="uid://ctvmgjbhsjbfi" path="res://Assets/Sprites/Medalla.svg" id="9_tex"]
 
 [resource]
 script = ExtResource("1_t2v8m")
 id = 24
 display_name = "Medalla"
 description = "Medalla de honor (de la esquina)"
+texture_sprite = ExtResource("9_tex")
+rarity = 1
 atack = 0.2
 crit_chance = 3.0
-texture_sprite = ExtResource("9_tex")
-
 metadata/_custom_type_script = "uid://dgj8vsixewv00"

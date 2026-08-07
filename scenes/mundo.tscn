@@ -1,0 +1,108 @@
+[gd_scene format=3 uid="uid://4kygrfrsnig3"]
+
+[ext_resource type="PackedScene" uid="uid://cvvuaravhrvkn" path="res://MenuStats/menu_stats.tscn" id="1_2hh7m"]
+[ext_resource type="PackedScene" uid="uid://cf28t3clpsbee" path="res://scenes/player.tscn" id="1_lgngo"]
+[ext_resource type="PackedScene" uid="uid://dvqphdeiurme1" path="res://scenes/menu armas.tscn" id="2_t8jxu"]
+[ext_resource type="PackedScene" uid="uid://bhuiggvoli0bh" path="res://scenes/item.tscn" id="4_otwa2"]
+[ext_resource type="Shader" uid="uid://ddbes2mdlyvwi" path="res://shaders/pasto.gdshader" id="5_wd5o3"]
+[ext_resource type="PackedScene" uid="uid://bsvowmsukqcnn" path="res://scenes/item_spawner.tscn" id="7_t8jxu"]
+[ext_resource type="PackedScene" uid="uid://c6hud382aaklx" path="res://scenes/hud.tscn" id="8_hud"]
+[ext_resource type="PackedScene" uid="uid://c8j2k1m3p4q5" path="res://scenes/game_over.tscn" id="9_gameover"]
+[ext_resource type="PackedScene" path="res://scenes/upgrade_menu.tscn" id="10_upmenu"]
+[ext_resource type="Script" uid="uid://c8qsrpy56kc1h" path="res://scripts/tienda/tienda_legendaria_spawner.gd" id="12_tienda_spawner"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6o2rw"]
+render_priority = 0
+shader = ExtResource("5_wd5o3")
+shader_parameter/background_floor_color = Color(0.15, 0.12, 0.08, 1)
+shader_parameter/base_color = Color(0.2, 0.4, 0.15, 1)
+shader_parameter/grass_scale = Vector2(2, 2)
+shader_parameter/black_clip_threshold = 0.05
+shader_parameter/clip_smoothing = 0.02
+shader_parameter/noise_scale = Vector2(0.2, 0.2)
+shader_parameter/noise_intensity = 0.35
+shader_parameter/variation_color = Color(0.35, 0.5, 0.15, 1)
+shader_parameter/roughness = 0.9
+shader_parameter/specular = 0.2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_u177a"]
+material = SubResource("ShaderMaterial_6o2rw")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u177a"]
+size = Vector3(445.18732, 0.001, 266.9198)
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_5ckkb"]
+
+[sub_resource type="Sky" id="Sky_5ckkb"]
+sky_material = SubResource("PhysicalSkyMaterial_5ckkb")
+
+[sub_resource type="Environment" id="Environment_u177a"]
+background_mode = 2
+background_energy_multiplier = 1.8
+sky = SubResource("Sky_5ckkb")
+ambient_light_source = 3
+tonemap_mode = 3
+tonemap_white = 6.0
+ssao_enabled = true
+ssao_radius = 1.5
+ssao_power = 2.0
+ssao_light_affect = 0.5
+glow_enabled = true
+glow_bloom = 0.1
+
+[node name="Node3D" type="Node3D" unique_id=1355005133]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=388228014]
+
+[node name="HUD" parent="CanvasLayer" unique_id=984321654 instance=ExtResource("8_hud")]
+
+[node name="Menu" parent="CanvasLayer" unique_id=1374605852 instance=ExtResource("1_2hh7m")]
+visible = false
+
+[node name="MenuArmas" parent="CanvasLayer" unique_id=1748608180 instance=ExtResource("2_t8jxu")]
+visible = false
+
+[node name="UpgradeMenu" parent="CanvasLayer" unique_id=1511491747 instance=ExtResource("10_upmenu")]
+visible = false
+
+[node name="Mapa" type="Node3D" parent="." unique_id=213141726]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Mapa" unique_id=914990794]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Mapa/StaticBody3D" unique_id=472818073]
+transform = Transform3D(232.09947, 0, 0, 0, 1, 0, 0, 0, 133.60431, 0, 0, 0)
+mesh = SubResource("PlaneMesh_u177a")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mapa/StaticBody3D" unique_id=221616704]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.962, 0, 0.217)
+shape = SubResource("BoxShape3D_u177a")
+
+[node name="Player" parent="." unique_id=218347238 instance=ExtResource("1_lgngo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.325, 0)
+
+[node name="Iluminacion" type="Node" parent="." unique_id=647590727]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Iluminacion" unique_id=2011047601]
+environment = SubResource("Environment_u177a")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Iluminacion" unique_id=942240534]
+transform = Transform3D(0.866025, -0.353553, 0.353553, 0, 0.707107, 0.707107, -0.5, -0.612372, 0.612372, 0, 20, 0)
+light_energy = 1.2
+shadow_enabled = true
+
+[node name="Enemigos" type="Node" parent="." unique_id=1459176867]
+
+[node name="Spawners" type="Node" parent="." unique_id=328473088]
+
+[node name="ItemSpawner" parent="Spawners" unique_id=967341465 instance=ExtResource("7_t8jxu")]
+chest_scene = ExtResource("4_otwa2")
+cantidad = 120
+radio = 80.0
+
+[node name="TiendaLegendariaSpawner" type="Node" parent="." unique_id=555666777]
+script = ExtResource("12_tienda_spawner")
+
+[node name="CanvasGameOver" type="CanvasLayer" parent="." unique_id=987654123]
+layer = 10
+
+[node name="GameOver" parent="CanvasGameOver" unique_id=876543210 instance=ExtResource("9_gameover")]

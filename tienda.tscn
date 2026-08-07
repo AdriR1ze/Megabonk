@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://belxv7w5l00d6"]
+
+[sub_resource type="GDScript" id="GDScript_qt5ao"]
+script/source = "extends StaticBody3D
+
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed(\"interact\"):
+		pass
+		
+"
+
+[sub_resource type="BoxMesh" id="BoxMesh_u177a"]
+size = Vector3(6.1104126, 3.0440674, 1)
+
+[node name="StaticBody3D" type="StaticBody3D" unique_id=357798963]
+script = SubResource("GDScript_qt5ao")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1223060065]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.595015, 0)
+mesh = SubResource("BoxMesh_u177a")

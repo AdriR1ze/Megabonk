@@ -1,14 +1,14 @@
-[gd_resource type="Resource" script_class="Item" format=3]
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://biul6e2wiregk"]
 
-[ext_resource type="Script" path="res://item.gd" id="1_it"]
+[ext_resource type="Script" uid="uid://dgj8vsixewv00" path="res://scripts/items/item.gd" id="1_it"]
 [ext_resource type="Resource" path="res://Resources/Skills/Sobrevida.tres" id="2_it"]
-
-[ext_resource type="Texture2D" path="res://Assets/Sprites/Sobrevida.svg" id="9_tex"]
+[ext_resource type="Texture2D" uid="uid://bep6u82nkesw6" path="res://Assets/Sprites/Sobrevida.svg" id="9_tex"]
 
 [resource]
 script = ExtResource("1_it")
 display_name = "Sobrevida"
 description = "Escudo naranja de +20 de vida que se recarga cada 10 segundos."
+texture_sprite = ExtResource("9_tex")
+rarity = 3
 skill = ExtResource("2_it")
 stats = false
-texture_sprite = ExtResource("9_tex")

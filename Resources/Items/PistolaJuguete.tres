@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://cu801l1gu2mib"]
+
+[ext_resource type="Script" uid="uid://dgj8vsixewv00" path="res://scripts/items/item.gd" id="1_scr"]
+[ext_resource type="Texture2D" uid="uid://kv3gnl70cdhi" path="res://Assets/Sprites/Pistola.svg" id="9_tex"]
+
+[resource]
+script = ExtResource("1_scr")
+display_name = "Pistola de Juguete"
+description = "Esquivar o que te peguen con una de mentira"
+texture_sprite = ExtResource("9_tex")
+rarity = 1
+evasion = 0.04
+metadata/_custom_type_script = "uid://dgj8vsixewv00"

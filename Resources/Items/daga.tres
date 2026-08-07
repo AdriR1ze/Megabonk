@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Item" format=3 uid="uid://go4rbxtqjvmd"]
 
-[ext_resource type="Script" uid="uid://dgj8vsixewv00" path="res://item.gd" id="1_5343l"]
+[ext_resource type="Script" uid="uid://dgj8vsixewv00" path="res://scripts/items/item.gd" id="1_5343l"]
 [ext_resource type="Texture2D" uid="uid://b2jgu08gqwjtb" path="res://Assets/Sprites/daga.svg" id="9_tex"]
 
 [resource]
@@ -9,5 +9,6 @@ id = 2
 display_name = "Daga"
 description = "Daga full daño"
 texture_sprite = ExtResource("9_tex")
+rarity = 2
 atack = 0.2
 metadata/_custom_type_script = "uid://dgj8vsixewv00"

@@ -1,16 +1,15 @@
 [gd_resource type="Resource" script_class="Item" format=3 uid="uid://dqgc2xk76sa5g"]
 
-[ext_resource type="Script" uid="uid://dgj8vsixewv00" path="res://item.gd" id="1_k4h9s"]
-
-[ext_resource type="Texture2D" path="res://Assets/Sprites/Anillo.svg" id="9_tex"]
+[ext_resource type="Script" uid="uid://dgj8vsixewv00" path="res://scripts/items/item.gd" id="1_k4h9s"]
+[ext_resource type="Texture2D" uid="uid://ccwysoyksu8ta" path="res://Assets/Sprites/Anillo.svg" id="9_tex"]
 
 [resource]
 script = ExtResource("1_k4h9s")
 id = 9
 display_name = "Anillo"
 description = "Anillo de la buena vibra"
+texture_sprite = ExtResource("9_tex")
+rarity = 2
 evasion = 0.05
 crit_chance = 4.0
-texture_sprite = ExtResource("9_tex")
-
 metadata/_custom_type_script = "uid://dgj8vsixewv00"

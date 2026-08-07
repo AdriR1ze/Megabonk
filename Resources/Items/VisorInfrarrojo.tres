@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://cxnf2nwcmp6ss"]
+
+[ext_resource type="Script" uid="uid://dgj8vsixewv00" path="res://scripts/items/item.gd" id="1_scr"]
+[ext_resource type="Texture2D" uid="uid://ctvmgjbhsjbfi" path="res://Assets/Sprites/Medalla.svg" id="9_tex"]
+
+[resource]
+script = ExtResource("1_scr")
+display_name = "Visor Infrarrojo"
+description = "Ve lo que otros no pueden mirar"
+texture_sprite = ExtResource("9_tex")
+rarity = 2
+crit_chance = 7.0
+metadata/_custom_type_script = "uid://dgj8vsixewv00"

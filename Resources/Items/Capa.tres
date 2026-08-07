@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Item" format=3 uid="uid://dcxig8b6y0rrx"]
 
-[ext_resource type="Script" uid="uid://dgj8vsixewv00" path="res://item.gd" id="1_9plwq"]
+[ext_resource type="Script" uid="uid://dgj8vsixewv00" path="res://scripts/items/item.gd" id="1_9plwq"]
 [ext_resource type="Texture2D" uid="uid://d3iwt2b5olfek" path="res://Assets/Sprites/Capa.svg" id="9_tex"]
 
 [resource]

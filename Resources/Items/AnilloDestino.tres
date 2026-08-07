@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://dnd0p05r04swi"]
+
+[ext_resource type="Script" uid="uid://dgj8vsixewv00" path="res://scripts/items/item.gd" id="1_scr"]
+[ext_resource type="Texture2D" uid="uid://ctvmgjbhsjbfi" path="res://Assets/Sprites/Medalla.svg" id="9_tex"]
+
+[resource]
+script = ExtResource("1_scr")
+display_name = "Anillo del Destino"
+description = "Forjado en una estrella fugaz"
+texture_sprite = ExtResource("9_tex")
+rarity = 3
+move_speed = 0.08
+atack = 0.2
+metadata/_custom_type_script = "uid://dgj8vsixewv00"

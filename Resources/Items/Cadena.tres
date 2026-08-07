@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Item" format=3 uid="uid://c7y1ncwyxbi5k"]
 
-[ext_resource type="Script" uid="uid://dgj8vsixewv00" path="res://item.gd" id="1_g9n3z"]
+[ext_resource type="Script" uid="uid://dgj8vsixewv00" path="res://scripts/items/item.gd" id="1_g9n3z"]
 [ext_resource type="Texture2D" uid="uid://quec7r1mkaeq" path="res://Assets/Sprites/Cadena.svg" id="9_tex"]
 
 [resource]

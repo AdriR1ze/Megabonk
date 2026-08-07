@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://cnhtg58s22e0y"]
 
 [ext_resource type="PackedScene" uid="uid://cvsk46pitwsxm" path="res://Armas/area_de_subfusil.tscn" id="1_puju1"]
-[ext_resource type="Script" uid="uid://bvufqb6f7hqio" path="res://WeaponData.gd" id="1_wstdk"]
+[ext_resource type="Script" uid="uid://bvufqb6f7hqio" path="res://scripts/data/WeaponData.gd" id="1_wstdk"]
 [ext_resource type="Texture2D" uid="uid://dgoayxopd3ng7" path="res://Assets/Sprites/Subfusil.svg" id="9_tex"]
 
 [resource]

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Item" format=3 uid="uid://bko1wsnqqbap0"]
 
-[ext_resource type="Script" uid="uid://dgj8vsixewv00" path="res://item.gd" id="1_it"]
+[ext_resource type="Script" uid="uid://dgj8vsixewv00" path="res://scripts/items/item.gd" id="1_it"]
 [ext_resource type="Resource" path="res://Resources/Skills/DanoExtra.tres" id="2_it"]
 [ext_resource type="Texture2D" uid="uid://ra6udler1uyx" path="res://Assets/Sprites/DanoExtra.svg" id="9_tex"]
 
@@ -9,5 +9,6 @@ script = ExtResource("1_it")
 display_name = "Daño Extra"
 description = "Probabilidad del 20% de causar 20 de daño adicional al disparar."
 texture_sprite = ExtResource("9_tex")
+rarity = 3
 skill = ExtResource("2_it")
 stats = false
