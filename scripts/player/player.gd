@@ -19,29 +19,34 @@ func _ready() -> void:
 		return
 
 	add_to_group("player")
-	WeaponManager.player = self
-	EventBus.run_started.emit()
+
+	if is_multiplayer_authority():
+		WeaponManager.player = self
+
+	if not _is_mp():
+		EventBus.run_started.emit()
+	elif is_multiplayer_authority() and multiplayer.get_unique_id() == 1:
+		EventBus.run_started.emit()
+
 	await get_tree().process_frame
 	ItemManager.player = self
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED if is_multiplayer_authority() else Input.MOUSE_MODE_VISIBLE
 	ItemManager.stats_changed.connect(_on_item_stats_changed)
 	health_component.max_health = PlayerStats.max_health
 	health_component.health = PlayerStats.max_health
 	health_component.health_changed.emit(health_component.health, health_component.max_health)
 
-	if _is_mp() and multiplayer.get_unique_id() != 1:
-		_emit_local_init()
+	if _is_mp() and not is_multiplayer_authority():
+		camera.queue_free()
+
+	if _is_mp() and not multiplayer.is_server() and WeaponManager.weapons.is_empty():
+		PlayerStats.reset_for_new_run()
+		EnemyManager._on_run_started_local()
+		var random_id = randi() % max(1, ArmaDB.get_all_armas().size())
+		WeaponManager.add_weapon(ArmaDB.get_arma(random_id))
 
 func _is_mp() -> bool:
 	return multiplayer.has_multiplayer_peer()
-
-func _emit_local_init() -> void:
-	PlayerStats.reset_for_new_run()
-	if not multiplayer.is_server():
-		EnemyManager._on_run_started_local()
-	if WeaponManager.weapons.is_empty():
-		var random_id = randi() % max(1, ArmaDB.get_all_armas().size())
-		WeaponManager.add_weapon(ArmaDB.get_arma(random_id))
 
 func _on_item_stats_changed() -> void:
 	if health_component.max_health == PlayerStats.max_health:

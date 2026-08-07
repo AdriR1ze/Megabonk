@@ -54,7 +54,7 @@ func join_game(address: String, port: int = DEFAULT_PORT) -> void:
 	multiplayer.multiplayer_peer = peer
 	_is_server = false
 
-	multiplayer.connection_succeeded.connect(_on_connection_succeeded)
+	multiplayer.connected_to_server.connect(_on_connection_succeeded)
 	multiplayer.connection_failed.connect(_on_connection_failed)
 	multiplayer.peer_connected.connect(_on_peer_connected)
 	multiplayer.peer_disconnected.connect(_on_peer_disconnected)

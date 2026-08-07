@@ -23,6 +23,11 @@ func _ready() -> void:
 	if back_btn:
 		back_btn.pressed.connect(_on_back_pressed)
 
+	if NetworkManager.is_server():
+		show_as_host()
+	elif multiplayer.has_multiplayer_peer():
+		show_as_client()
+
 func show_as_host() -> void:
 	visible = true
 	status_label.text = "Esperando jugadores..."
@@ -69,7 +74,7 @@ func _refresh_player_list() -> void:
 func _on_start_pressed() -> void:
 	if not NetworkManager.is_server():
 		return
-	NetworkManager.request_start_game.rpc_id(1)
+	NetworkManager.request_start_game()
 
 func _on_game_started() -> void:
 	get_tree().change_scene_to_file("res://scenes/mundo.tscn")
