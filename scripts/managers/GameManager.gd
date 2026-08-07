@@ -1,5 +1,4 @@
 extends Node
-# Manager global de estado del juego y recompensas
 
 signal seleccionar_arma
 signal coins_changed(new_coins: int)
@@ -17,10 +16,14 @@ var chest_price : int = 20
 func _ready() -> void:
 	EventBus.enemy_died.connect(_on_enemy_died)
 
-func _on_enemy_died(_enemy_node: Node3D, _xp_reward: int, _coin_reward: int) -> void:
+func _on_enemy_died(_enemy_node: Node3D, xp_reward: int, _coin_reward: int) -> void:
 	enemies_killed += 1
 
-func get_chest_price() -> int: 
+func _broadcast_xp_to_all(xp_amount: int) -> void:
+	for peer_id in multiplayer.get_peers():
+		PlayerStats.add_xp_rpc.rpc_id(peer_id, xp_amount)
+
+func get_chest_price() -> int:
 	chest_price = 20
 	calc_chest_price(chests_opened)
 	return chest_price

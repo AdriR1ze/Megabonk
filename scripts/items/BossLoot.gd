@@ -27,9 +27,12 @@ func _process(delta: float) -> void:
 	rotation.y += delta * 2.5
 
 func _on_body_entered(body: Node3D) -> void:
-	if body.is_in_group("player"):
-		_give_item()
-		queue_free()
+	if not body.is_in_group("player"):
+		return
+	if multiplayer.has_multiplayer_peer() and not body.is_multiplayer_authority():
+		return
+	_give_item()
+	queue_free()
 
 func _give_item() -> void:
 	var items = ItemDB.get_all_items()

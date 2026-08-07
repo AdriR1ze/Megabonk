@@ -1,5 +1,4 @@
 extends Node
-# Autoload: maneja pool de enemigos y creditos para spawning.
 
 @export var default_enemy_scene : PackedScene
 @export var boss_scene : PackedScene
@@ -72,7 +71,7 @@ func _on_run_started() -> void:
 	_build_pool()
 
 	for i in range(2):
-		var enemy = _spawn_enemy_internal(null)
+		var enemy = _spawn_enemy(null)
 		if enemy == null:
 			break
 
@@ -88,9 +87,13 @@ func _build_pool() -> void:
 		enemy.visible = false
 		enemy.process_mode = Node.PROCESS_MODE_DISABLED
 		enemy.global_position = Vector3(9999, 9999, 9999)
+		enemy.set_meta("pool_index", i)
 		pool.append(enemy)
 
 func _process(delta: float) -> void:
+	if not _should_run():
+		return
+
 	if get_tree().paused or WaveManager.active_wave == null:
 		return
 
@@ -101,6 +104,12 @@ func _process(delta: float) -> void:
 	if spawn_timer >= wave.spawn_interval and remaining_credits >= 1.0:
 		spawn_timer = 0.0
 		_try_spend_credits(wave)
+
+func _should_run() -> bool:
+	return not _is_mp() or multiplayer.is_server()
+
+func _is_mp() -> bool:
+	return multiplayer.has_multiplayer_peer()
 
 func _try_spend_credits(wave: WaveData) -> void:
 	var available = _get_available_enemies(wave)
@@ -119,7 +128,7 @@ func _try_spend_credits(wave: WaveData) -> void:
 	for i in range(count_in_tick):
 		if remaining_credits < enemy_data.credit_cost:
 			break
-		if _spawn_enemy_internal(enemy_data) != null:
+		if _spawn_enemy(enemy_data) != null:
 			remaining_credits -= enemy_data.credit_cost
 			EventBus.credits_changed.emit(remaining_credits, 0)
 
@@ -143,7 +152,7 @@ func _get_available_enemies(wave: WaveData) -> Array:
 		return _all_enemy_types
 	return []
 
-func _spawn_enemy_internal(enemy_data: EnemyData) -> Node:
+func _spawn_enemy(enemy_data: EnemyData) -> Node:
 	var enemy = _get_free_enemy()
 	if enemy == null:
 		return null
@@ -177,6 +186,12 @@ func _spawn_enemy_internal(enemy_data: EnemyData) -> Node:
 		enemy.process_mode = Node.PROCESS_MODE_INHERIT
 
 	EventBus.enemy_spawned.emit(enemy)
+
+	if _is_mp():
+		var pool_index = enemy.get_meta("pool_index", -1)
+		if pool_index >= 0:
+			_activate_enemy_on_client.rpc(pool_index, pos, health_mult)
+
 	return enemy
 
 func _on_wave_started(wave_index: int, wave_data: WaveData) -> void:
@@ -231,3 +246,28 @@ func _get_free_enemy() -> Node:
 		if e.process_mode == Node.PROCESS_MODE_DISABLED:
 			return e
 	return null
+
+func _on_run_started_local() -> void:
+	for e in pool:
+		if is_instance_valid(e):
+			e.queue_free()
+	pool.clear()
+	await get_tree().physics_frame
+	if get_tree().current_scene == null:
+		return
+	_build_pool()
+
+@rpc("authority")
+func _activate_enemy_on_client(pool_index: int, pos: Vector3, health_mult: float) -> void:
+	if pool_index < 0 or pool_index >= pool.size():
+		return
+	var enemy = pool[pool_index]
+	if not is_instance_valid(enemy):
+		return
+	enemy.global_position = pos
+	if enemy.has_method("reset_enemy"):
+		enemy.reset_enemy(health_mult)
+	else:
+		enemy.visible = true
+		enemy.process_mode = Node.PROCESS_MODE_INHERIT
+	EventBus.enemy_spawned.emit(enemy)

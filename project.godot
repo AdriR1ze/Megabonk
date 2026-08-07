@@ -30,6 +30,7 @@ UIManager="*res://scripts/managers/UIManager.gd"
 ArmaDB="*uid://dmoovsmofy021"
 ItemDB="*uid://yv3pvsmfrj7"
 ItemManager="*uid://b8wjjgj64wk7t"
+NetworkManager="*res://scripts/autoload/NetworkManager.gd"
 
 [display]
 

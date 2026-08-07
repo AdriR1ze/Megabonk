@@ -54,7 +54,19 @@ layout_mode = 2
 custom_minimum_size = Vector2(260, 55)
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
-text = "JUGAR"
+text = "JUGAR (SOLO)"
+
+[node name="HostBtn" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(260, 55)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "HOSTEAR PARTIDA"
+
+[node name="JoinBtn" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(260, 55)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "UNIRSE A PARTIDA"
 
 [node name="InventarioBtn" type="Button" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(260, 55)

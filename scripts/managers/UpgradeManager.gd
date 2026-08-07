@@ -1,5 +1,4 @@
 extends Node
-# Autoload: gestiona las mejoras ofrecidas al subir de nivel y aplica sus efectos.
 
 @export var all_upgrades : Array[UpgradeData] = []
 @export var upgrades_offered_count : int = 3
@@ -8,7 +7,6 @@ func _ready() -> void:
 	EventBus.player_xp_changed.connect(_on_xp_changed)
 	_load_upgrades()
 
-# Carga las mejoras de estadísticas desde Resources/Upgrades.
 func _load_upgrades() -> void:
 	var dir := DirAccess.open("res://Resources/Upgrades")
 	if dir == null:
@@ -23,14 +21,12 @@ func _load_upgrades() -> void:
 func _on_xp_changed(current_xp: int, needed_xp: int, level: int) -> void:
 	pass
 
-# Llamada por PlayerStats cuando se alcanza un nuevo nivel.
 func offer_upgrades() -> void:
 	var pool := _build_pool()
 	if pool.is_empty():
 		GameManager.seleccionar_arma.emit()
 		return
 
-	# Separar mejoras de stats y opciones de armas (nueva o upgrade).
 	var stat_opts: Array = []
 	var weapon_opts: Array = []
 	for u in pool:
@@ -41,7 +37,6 @@ func offer_upgrades() -> void:
 	stat_opts.shuffle()
 	weapon_opts.shuffle()
 
-	# Garantizar al menos una opción de arma cuando haya disponible.
 	var offered: Array = []
 	if not weapon_opts.is_empty():
 		offered.append(weapon_opts.pop_front())
@@ -55,7 +50,6 @@ func offer_upgrades() -> void:
 	get_tree().paused = true
 	EventBus.upgrade_offered.emit(offered)
 
-# Construye la lista de mejoras disponibles: stats configuradas + opciones de armas.
 func _build_pool() -> Array:
 	var available : Array = []
 	for upgrade in all_upgrades:
@@ -68,7 +62,6 @@ func _build_pool() -> Array:
 	available.append_array(_build_weapon_options())
 	return available
 
-# Genera opciones de armas en tiempo real según lo que ya tiene el jugador.
 func _build_weapon_options() -> Array:
 	var options : Array = []
 	var at_max := WeaponManager.weapons.size() >= WeaponManager.MAX_WEAPONS
@@ -94,7 +87,7 @@ func _make_weapon_upgrade(weapon_data: WeaponData, is_new: bool) -> UpgradeData:
 	u.rarity = weapon_data.rarity
 	if is_new:
 		u.upgrade_name = weapon_data.weapon_name
-		u.description = "NUEVA ARMA\nDaño: %.0f · Cadencia: %.2fs\nRango: %.0f" % [weapon_data.damage, weapon_data.cooldown, weapon_data.rango]
+		u.description = "NUEVA ARMA\nDano: %.0f . Cadencia: %.2fs\nRango: %.0f" % [weapon_data.damage, weapon_data.cooldown, weapon_data.rango]
 	else:
 		var current_level := 1
 		for w in WeaponManager.weapons:
@@ -102,7 +95,7 @@ func _make_weapon_upgrade(weapon_data: WeaponData, is_new: bool) -> UpgradeData:
 				current_level = w.data.level
 				break
 		u.upgrade_name = weapon_data.weapon_name + " (Nv. " + str(current_level + 1) + ")"
-		u.description = "MEJORAR ARMA\n+Daño: %.0f\n+Rango: +%.1f · Pierce: +%d" % [
+		u.description = "MEJORAR ARMA\n+Dano: %.0f\n+Rango: +%.1f . Pierce: +%d" % [
 			weapon_data.crecimiento_damage, weapon_data.crecimiento_rango, weapon_data.crecimiento_pierce]
 	return u
 
@@ -117,7 +110,6 @@ func _synergy_requirements_met(upgrade: UpgradeData) -> bool:
 			return false
 	return true
 
-# Llamada desde la UI cuando el jugador elige una mejora
 func apply_upgrade(upgrade: UpgradeData) -> void:
 	match upgrade.type:
 		UpgradeData.UpgradeType.STAT:

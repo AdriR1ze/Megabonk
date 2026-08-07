@@ -16,18 +16,24 @@ func _ready() -> void:
 	visible = false
 	UIManager.register_game_over_screen(self)
 	EventBus.player_died.connect(show_game_over)
-	
+
 	if reintentar_btn:
 		reintentar_btn.pressed.connect(_on_reintentar_pressed)
 	if salir_btn:
 		salir_btn.pressed.connect(_on_salir_pressed)
 
+func _is_mp() -> bool:
+	return multiplayer.has_multiplayer_peer()
+
 func show_game_over() -> void:
+	if _is_mp() and not _is_my_player_dead():
+		return
+
 	visible = true
-	get_tree().paused = true
+	if not _is_mp():
+		get_tree().paused = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
-	# Cargar estadísticas
 	var total_sec = int(WaveManager.elapsed_time)
 	var mins = total_sec / 60
 	var secs = total_sec % 60
@@ -40,13 +46,26 @@ func show_game_over() -> void:
 	if monedas_val:
 		monedas_val.text = str(GameManager.coins)
 
-	# Guardar progresión permanente (monedas acumuladas)
 	SaveManager.end_run(GameManager.coins, PlayerStats.level, GameManager.enemies_killed, WaveManager.elapsed_time)
 	if plata_guardada_val:
 		plata_guardada_val.text = str(SaveManager.persistent_coins)
 
-	# Cargar Ítems recolectados
 	_populate_items()
+
+func _is_my_player_dead() -> bool:
+	var my_player = _get_my_player()
+	if not is_instance_valid(my_player):
+		return true
+	var hc = my_player.get_node_or_null("HealthComponent")
+	if hc and hc.health <= 0:
+		return true
+	return false
+
+func _get_my_player() -> Node3D:
+	for p in get_tree().get_nodes_in_group("player"):
+		if p.is_multiplayer_authority():
+			return p
+	return get_tree().get_first_node_in_group("player")
 
 func _populate_items() -> void:
 	if not items_container:
@@ -57,12 +76,11 @@ func _populate_items() -> void:
 
 	if ItemManager.items_player.is_empty():
 		var empty_lbl = Label.new()
-		empty_lbl.text = "Sin ítems recolectados"
+		empty_lbl.text = "Sin items recolectados"
 		empty_lbl.add_theme_color_override("font_color", Color(0.7, 0.7, 0.7))
 		items_container.add_child(empty_lbl)
 		return
 
-	# Agrupar ítems por ID
 	var item_counts = {}
 	for item_id in ItemManager.items_player:
 		if item_counts.has(item_id):
@@ -102,14 +120,16 @@ func _populate_items() -> void:
 		items_container.add_child(item_card)
 
 func _on_reintentar_pressed() -> void:
-	get_tree().paused = false
+	if not _is_mp():
+		get_tree().paused = false
 	GameManager.reset_run()
 	PlayerStats.reset_for_new_run()
 	ItemManager.limpiar_items()
 	get_tree().reload_current_scene()
 
 func _on_salir_pressed() -> void:
-	get_tree().paused = false
+	if not _is_mp():
+		get_tree().paused = false
 	GameManager.reset_run()
 	PlayerStats.reset_for_new_run()
 	ItemManager.limpiar_items()

@@ -156,4 +156,5 @@ func _on_upgrade_pressed(upgrade: UpgradeData) -> void:
 	UpgradeManager.apply_upgrade(upgrade)
 	if PlayerStats.pending_levels == 0:
 		visible = false
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		if not multiplayer.has_multiplayer_peer():
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

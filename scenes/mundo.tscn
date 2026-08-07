@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://c8j2k1m3p4q5" path="res://scenes/game_over.tscn" id="9_gameover"]
 [ext_resource type="PackedScene" path="res://scenes/upgrade_menu.tscn" id="10_upmenu"]
 [ext_resource type="Script" uid="uid://c8qsrpy56kc1h" path="res://scripts/tienda/tienda_legendaria_spawner.gd" id="12_tienda_spawner"]
+[ext_resource type="Script" path="res://scripts/terrain/mundo_network.gd" id="13_mundo_net"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6o2rw"]
 render_priority = 0
@@ -51,6 +52,7 @@ glow_enabled = true
 glow_bloom = 0.1
 
 [node name="Node3D" type="Node3D" unique_id=1355005133]
+script = ExtResource("13_mundo_net")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=388228014]
 

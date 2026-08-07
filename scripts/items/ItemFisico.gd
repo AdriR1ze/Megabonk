@@ -10,15 +10,18 @@ func _ready() -> void:
 		prompt_label.visible = false
 
 func _on_body_entered(body: Node3D) -> void:
-	if body.is_in_group("player"):
+	if body.is_in_group("player") and _is_local_player(body):
 		player_inside = true
 		_update_prompt()
 
 func _on_body_exited(body: Node3D) -> void:
-	if body.is_in_group("player"):
+	if body.is_in_group("player") and _is_local_player(body):
 		player_inside = false
 		if prompt_label:
 			prompt_label.visible = false
+
+func _is_local_player(body: Node3D) -> bool:
+	return not multiplayer.has_multiplayer_peer() or body.is_multiplayer_authority()
 
 func _update_prompt() -> void:
 	if not prompt_label:

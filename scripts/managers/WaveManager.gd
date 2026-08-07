@@ -1,5 +1,4 @@
 extends Node
-# Autoload: controla el reloj de la partida, transiciones de oleada y eventos por minuto.
 
 var elapsed_time : float = 0.0
 var current_wave_index : int = -1
@@ -25,11 +24,19 @@ func _on_run_started() -> void:
 	_check_wave_transition()
 
 func _process(delta: float) -> void:
+	if not _should_run():
+		return
 	if get_tree().paused:
 		return
 	elapsed_time += delta
 	_check_wave_transition()
 	_check_minute_event()
+
+func _should_run() -> bool:
+	return not _is_mp() or multiplayer.is_server()
+
+func _is_mp() -> bool:
+	return multiplayer.has_multiplayer_peer()
 
 func get_minutes() -> float:
 	return elapsed_time / 60.0

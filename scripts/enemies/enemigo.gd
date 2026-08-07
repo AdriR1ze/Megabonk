@@ -12,11 +12,25 @@ var player : Node3D = null
 
 func _ready() -> void:
 	add_to_group("enemy")
-	player = get_tree().get_first_node_in_group("player")
+	_find_nearest_player()
+
+func _find_nearest_player() -> void:
+	var players = get_tree().get_nodes_in_group("player")
+	var best_dist = INF
+	for p in players:
+		if not is_instance_valid(p):
+			continue
+		var dist = global_position.distance_to(p.global_position)
+		if dist < best_dist:
+			best_dist = dist
+			player = p
+
+	if player == null:
+		player = get_tree().get_first_node_in_group("player")
 
 func _physics_process(delta: float) -> void:
 	if not is_instance_valid(player) or not player.is_inside_tree():
-		player = get_tree().get_first_node_in_group("player")
+		_find_nearest_player()
 		if not player:
 			return
 
@@ -38,6 +52,7 @@ func _physics_process(delta: float) -> void:
 					collider.take_damage(dmg)
 
 func take_damage(damage_amount: float, is_critical: bool = false, crit_tier: int = 0) -> void:
+	print("RECIBIENDO DAÑO")
 	if health_component:
 		health_component.take_damage(damage_amount, is_critical, crit_tier)
 
@@ -53,7 +68,7 @@ func reset_enemy(health_multiplier: float = 1.0) -> void:
 	process_mode = Node.PROCESS_MODE_INHERIT
 	attack_timer = 0.0
 	if is_inside_tree():
-		player = get_tree().get_first_node_in_group("player")
+		_find_nearest_player()
 
 func _apply_model() -> void:
 	if not mesh_instance or not enemy_data:

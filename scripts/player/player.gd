@@ -12,10 +12,12 @@ const SPEED = 8.5
 var camera_yaw: float = 0.0
 var camera_pitch: float = deg_to_rad(-30.0)
 
-# Regeneración
 var _regen_timer : float = 0.0
 
 func _ready() -> void:
+	if _is_mp() and name == "Player":
+		return
+
 	add_to_group("player")
 	WeaponManager.player = self
 	EventBus.run_started.emit()
@@ -23,10 +25,23 @@ func _ready() -> void:
 	ItemManager.player = self
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	ItemManager.stats_changed.connect(_on_item_stats_changed)
-	# Sincronizar vida máxima con PlayerStats (incluye mejoras permanentes)
 	health_component.max_health = PlayerStats.max_health
 	health_component.health = PlayerStats.max_health
 	health_component.health_changed.emit(health_component.health, health_component.max_health)
+
+	if _is_mp() and multiplayer.get_unique_id() != 1:
+		_emit_local_init()
+
+func _is_mp() -> bool:
+	return multiplayer.has_multiplayer_peer()
+
+func _emit_local_init() -> void:
+	PlayerStats.reset_for_new_run()
+	if not multiplayer.is_server():
+		EnemyManager._on_run_started_local()
+	if WeaponManager.weapons.is_empty():
+		var random_id = randi() % max(1, ArmaDB.get_all_armas().size())
+		WeaponManager.add_weapon(ArmaDB.get_arma(random_id))
 
 func _on_item_stats_changed() -> void:
 	if health_component.max_health == PlayerStats.max_health:
@@ -40,6 +55,8 @@ func _on_item_stats_changed() -> void:
 	health_component.health_changed.emit(health_component.health, health_component.max_health)
 
 func _unhandled_input(event: InputEvent) -> void:
+	if _is_mp() and not is_multiplayer_authority():
+		return
 	if get_tree().paused:
 		return
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
@@ -48,6 +65,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		camera_pitch = clamp(camera_pitch, deg_to_rad(-75.0), deg_to_rad(-5.0))
 
 func _physics_process(delta: float) -> void:
+	if _is_mp() and not is_multiplayer_authority():
+		return
+
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
@@ -71,7 +91,6 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-	# Regeneración de vida
 	if PlayerStats.regen > 0.0:
 		_regen_timer += delta
 		if _regen_timer >= 1.0:
@@ -81,13 +100,11 @@ func _physics_process(delta: float) -> void:
 func take_damage(amount: float) -> void:
 	var final_damage = max(1.0, amount - (PlayerStats.defense - 1.0))
 
-	# Escudo absorbente: bloquea un golpe completo
 	var escudo = get_tree().get_first_node_in_group("escudo")
 	if escudo and escudo.has_method("try_block") and escudo.try_block():
 		EventBus.shield_blocked.emit()
 		return
 
-	# Sobrevida: absorbe daño antes que la vida real
 	var sobrevida = get_tree().get_first_node_in_group("sobrevida")
 	if sobrevida and sobrevida.has_method("absorb"):
 		final_damage = sobrevida.absorb(final_damage)

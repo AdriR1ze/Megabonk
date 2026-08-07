@@ -85,12 +85,20 @@ func _on_credits_changed(current: float, _max_credits: int) -> void:
 
 func _setup_player_health() -> void:
 	await get_tree().process_frame
-	var player = get_tree().get_first_node_in_group("player")
+	var player = _find_local_player()
 	if player:
 		var health_comp = player.get_node_or_null("HealthComponent")
 		if health_comp:
 			health_comp.health_changed.connect(_on_health_changed)
 			_on_health_changed(health_comp.health, health_comp.max_health)
+
+func _find_local_player() -> Node3D:
+	if not multiplayer.has_multiplayer_peer():
+		return get_tree().get_first_node_in_group("player")
+	for p in get_tree().get_nodes_in_group("player"):
+		if p.is_multiplayer_authority():
+			return p
+	return get_tree().get_first_node_in_group("player")
 
 func _update_player_stats() -> void:
 	level_label.text = "Nivel " + str(PlayerStats.level)

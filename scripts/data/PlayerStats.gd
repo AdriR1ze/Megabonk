@@ -1,32 +1,28 @@
 extends Node
-# Autoload: estadísticas vivas del jugador durante la partida.
 
-# --- Estadísticas base ---
 var max_health : float = 100.0
-var defense : float = 1.0        # Reducción plana de daño recibido
-var move_speed : float = 1.0     # Multiplicador de velocidad
-var atack : float = 1.0          # Multiplicador de daño
-var atq_speed : float = 1.0      # Multiplicador de velocidad de ataque
-var crit_chance : float = 0.05   # Probabilidad de crítico (0.0 - 1.0)
+var defense : float = 1.0
+var move_speed : float = 1.0
+var atack : float = 1.0
+var atq_speed : float = 1.0
+var crit_chance : float = 0.05
 var crit_multiplier : float = 1.3
 var evasion : float = 0.0
 var xp_multiplicator : float = 1.0
-var regen : float = 0.0          # Vida regenerada por segundo
-var projectile_speed : float = 1.0 # Multiplicador de velocidad de proyectiles
-var pierce_bonus : int = 0       # Pierce extra sobre el base del arma
+var regen : float = 0.0
+var projectile_speed : float = 1.0
+var pierce_bonus : int = 0
 var range_multiplier : float = 1.0
 var area_multiplier : float = 1.0
-var luck : float = 1.0           # Afecta rarezas y drop de monedas
-var dano_extra_chance : float = 0.0  # Probabilidad de daño extra al disparar
-var dano_extra_amount : float = 0.0  # Cantidad de daño extra al disparar
+var luck : float = 1.0
+var dano_extra_chance : float = 0.0
+var dano_extra_amount : float = 0.0
 
-# --- Experiencia y Nivel ---
 var level : int = 1
 var xp : int = 0
 var xp_needed : int = 5
-var pending_levels : int = 0  # Niveles ganados que aún no eligieron mejora
+var pending_levels : int = 0
 
-# --- Señales ---
 signal level_up
 signal xp_changed
 
@@ -46,6 +42,10 @@ func add_xp(amount: int) -> void:
 
 	if pending_levels > 0:
 		UpgradeManager.offer_upgrades()
+
+@rpc("authority")
+func add_xp_rpc(amount: int) -> void:
+	add_xp(amount)
 
 func reset_for_new_run() -> void:
 	max_health = 100.0
